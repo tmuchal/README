@@ -1,171 +1,113 @@
 <div align="center">
 
-<img src="./pixel-art.svg" alt="👾 Space Invader Pixel Art" />
+<img src="./pixel-art.svg" width="800" alt="냥냥 숲의 개발자" />
 
-# 👾 tmuchal
+<br/>
 
-```
-╔══════════════════════════════════════╗
-║    >> PRESS START TO CONTINUE <<     ║
-╚══════════════════════════════════════╝
-```
+# 🍲 안녕하세요, 코드 수프 끓이는 고양이입니다
 
-*Turning ☕ into code, one commit at a time*
+> *오늘도 숲속에서 열심히 수프를 끓이는 중이에요...*
 
-[![GitHub followers](https://img.shields.io/github/followers/tmuchal?style=for-the-badge&logo=github&color=00FF41&labelColor=0D1117)](https://github.com/tmuchal)
+[![GitHub followers](https://img.shields.io/github/followers/tmuchal?style=flat-square&logo=github&color=F4A460&labelColor=4A3728&label=followers)](https://github.com/tmuchal)
 &nbsp;
-[![Profile Views](https://komainu8.github.io/github-profile-views-counter/service?page=tmuchal&color=00FF41)](https://github.com/tmuchal)
+[![GitHub stars](https://img.shields.io/github/stars/tmuchal?style=flat-square&logo=github&color=FFD700&labelColor=4A3728&label=stars)](https://github.com/tmuchal)
 
 </div>
 
 ---
 
-## 🕹️ CHARACTER SELECT
+## 🐾 이 고양이에 대하여
 
 ```
-┌──────────────────────────────────────────┐
-│  📛  NAME   :  tmuchal                   │
-│  ⚔️   CLASS  :  Developer                 │
-│  🌍  REGION :  Earth                     │
-│                                          │
-│  ❤️   HP     :  ████████████  100 / 100  │
-│  ☕  COFFEE :  ████████████  ∞  /  ∞    │
-│  🐛  BUGS   :  ████░░░░░░░░  squashing.. │
-│  📦  COMMITS:  ████████████  everyday    │
-└──────────────────────────────────────────┘
+  /\_____/\
+ ( ◕ ω ◕  )   오늘도 코드 수프를 끓이고 있어요
+  > 　    <    버그라는 벌레도 가끔 잡고요
+   ~~~~~~     맛있는 결과물이 나올 때까지 ~
 ```
 
-<details>
-<summary>👁️ &nbsp;<b>스포일러: About me</b></summary>
+숲속 작은 냄비 앞에 앉아 코드를 끓이고 있는 개발자 고양이입니다 🍃
 
-<br/>
-
-- 🎮 코드 짜는 걸 게임처럼 즐깁니다
-- 🌙 야심한 밤의 디버깅을 사랑합니다 (사실 싫어요)
-- 🚀 새로운 기술을 배우는 게 취미
-- 🧩 복잡한 문제를 단순하게 만드는 것에 집착
-- 🤝 오픈소스에 기여하고 싶은 마음 항상 있음
-
-</details>
+- 🌿 좋은 코드가 좋은 수프처럼 우러나올 때까지 기다릴 줄 아는 편이에요
+- 🐛 버그(벌레)는 두렵지 않아요, 사냥이 취미거든요
+- 🍄 새로운 기술은 숲에서 발견하는 버섯처럼 설레요
+- 🌙 달빛 아래 디버깅도 나쁘지 않아요 (사실 좀 무서워요)
+- ☕ 커피가 없으면 수프도 안 끓여요
 
 ---
 
-## 💻 TECH STACK
-
-<!-- 아래 스택은 본인 것으로 수정하세요! -->
-<!-- https://skillicons.dev 에서 원하는 아이콘 선택 가능 -->
+## 🧰 수프 재료 (Tech Stack)
 
 <div align="center">
 
-**Languages**
+**Language**
 
-[![Skills](https://skillicons.dev/icons?i=js,ts,python,java&theme=dark)](https://skillicons.dev)
+[![Skills](https://skillicons.dev/icons?i=js,ts,python,java&theme=light)](https://skillicons.dev)
 
 **Frontend**
 
-[![Skills](https://skillicons.dev/icons?i=react,nextjs,html,css,tailwind&theme=dark)](https://skillicons.dev)
+[![Skills](https://skillicons.dev/icons?i=react,nextjs,html,css,tailwind&theme=light)](https://skillicons.dev)
 
 **Backend & DB**
 
-[![Skills](https://skillicons.dev/icons?i=nodejs,express,postgresql,mongodb,redis&theme=dark)](https://skillicons.dev)
+[![Skills](https://skillicons.dev/icons?i=nodejs,express,postgresql,mongodb,redis&theme=light)](https://skillicons.dev)
 
-**Tools & Infra**
+**Tools**
 
-[![Skills](https://skillicons.dev/icons?i=git,docker,linux,vscode,github&theme=dark)](https://skillicons.dev)
+[![Skills](https://skillicons.dev/icons?i=git,docker,linux,vscode,github&theme=light)](https://skillicons.dev)
 
 </div>
 
 ---
 
-## 📊 BATTLE STATS
+## 📊 수프 끓인 기록 (GitHub Stats)
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=tmuchal&show_icons=true&theme=chartreuse-dark&bg_color=0D1117&border_color=00FF41&icon_color=00FF41&title_color=00FF41&text_color=ffffff&hide_border=false" />
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=tmuchal&show_icons=true&theme=swift&bg_color=FDF6EC&border_color=F4A460&icon_color=CD853F&title_color=8B5E3C&text_color=4A3728&hide_border=false" />
 &nbsp;
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tmuchal&layout=compact&theme=chartreuse-dark&bg_color=0D1117&border_color=00FF41&title_color=00FF41&text_color=ffffff" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tmuchal&layout=compact&theme=swift&bg_color=FDF6EC&border_color=F4A460&title_color=8B5E3C&text_color=4A3728" />
 
 </div>
 
 <div align="center">
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=tmuchal&theme=dark&background=0D1117&border=00FF41&stroke=00FF41&ring=00FF41&fire=FF8C00&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=00FF41&sideLabels=00FF41&dates=888888" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=tmuchal&theme=swift&background=FDF6EC&border=F4A460&stroke=F4A460&ring=CD853F&fire=FF7043&currStreakNum=4A3728&sideNums=4A3728&currStreakLabel=8B5E3C&sideLabels=8B5E3C&dates=9E8272" />
 
 </div>
 
 ---
 
-## 🎮 CURRENT QUEST
+## 🌿 오늘의 수프 메뉴 (Current Work)
 
 ```
-[ MAIN QUEST  ]  ██████████░░  진행 중...
-[ SIDE QUEST  ]  ████░░░░░░░░  배우는 중...
-[ DAILY QUEST ]  ██████████░░  커밋 스트릭 유지!
+🍲 메인 수프   ████████████░░  열심히 끓이는 중...
+🥕 재료 추가   ██████░░░░░░░░  새 기능 개발 중...
+🔥 불 조절    ████████████░░  커밋 스트릭 유지!
 ```
 
-> 🔥 **Now Playing:** 사이드 프로젝트 빌딩 중
+> 🍵 **지금 이 냄비에 담긴 것:** 사이드 프로젝트 빌딩 중
 
 ---
 
-## 👾 PIXEL ART GALLERY
+## 🏅 수프 레시피 달성 (Achievements)
 
-<div align="center">
-
-<!-- Ghost (Blinky) -->
-```
-⬛🟥🟥🟥🟥🟥⬛
-🟥🟥🟥🟥🟥🟥🟥
-🟥⬜⬜🟥⬜⬜🟥
-🟥🟦🟦🟥🟦🟦🟥
-🟥🟥🟥🟥🟥🟥🟥
-🟥🟥🟥🟥🟥🟥🟥
-🟥⬛🟥⬛🟥⬛🟥
-```
-*Blinky says: push more commits!*
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<!-- Pac-Man -->
-```
-⬛🟨🟨🟨🟨⬛
-🟨🟨🟨🟨🟨🟨
-🟨🟨🟨⬛⬛⬛
-🟨🟨🟨🟨🟨🟨
-⬛🟨🟨🟨🟨⬛
-```
-*Pac-Man is eating your bugs 🐛*
-
-</div>
-
----
-
-## 🏆 ACHIEVEMENTS UNLOCKED
-
-| 🏅 뱃지 | 🎯 업적 |
-|--------|--------|
-| ⭐ First Star | 첫 번째 스타 획득 |
-| 🔀 Merge Master | PR 머지 달성 |
-| 🌙 Night Owl | 새벽 2시 커밋 |
-| ☕ Caffeine Addict | 코드 마라톤 생존 |
-| 🐛 Bug Slayer | 버그 잡는 자 |
+| 뱃지 | 업적 |
+|------|------|
+| 🌱 첫 새싹 | 첫 번째 커밋 |
+| 🍄 버섯 수집가 | 레포지토리 5개 달성 |
+| 🌙 달빛 요리사 | 새벽 2시 커밋 |
+| 🔥 불꽃 마스터 | 커밋 스트릭 유지 중 |
+| 🐛 벌레 사냥꾼 | 버그 잡는 자 |
+| ☕ 커피 중독자 | 코딩 마라톤 생존 |
 
 ---
 
 <div align="center">
 
-```
-  ██████╗  █████╗ ███╗   ███╗███████╗
- ██╔════╝ ██╔══██╗████╗ ████║██╔════╝
- ██║  ███╗███████║██╔████╔██║█████╗
- ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝
- ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗
-  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
-```
-
-*Thanks for visiting! Come back soon 👾*
+🍃 *방문해 주셔서 감사해요! 수프 한 그릇 드시고 가세요* 🍃
 
 <br/>
 
-**⚡ Powered by caffeine, curiosity & Stack Overflow ⚡**
+**냥냥 개발자의 숲 · 오늘도 맛있는 코드를 만들고 있어요**
 
 </div>
