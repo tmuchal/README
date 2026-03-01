@@ -1,207 +1,178 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" width="800" height="280">
-  <!-- Sky -->
-  <rect width="800" height="280" fill="#F4F0E4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300">
 
-  <!-- Clouds -->
-  <rect x="130" y="28" width="72" height="18" fill="#FFFFFF" opacity="0.85"/>
-  <rect x="118" y="38" width="96" height="16" fill="#FFFFFF" opacity="0.85"/>
-  <rect x="540" y="22" width="80" height="18" fill="#FFFFFF" opacity="0.85"/>
-  <rect x="528" y="32" width="104" height="16" fill="#FFFFFF" opacity="0.85"/>
-
-  <!-- Stars / sparkles -->
-  <rect x="98"  y="18" width="4" height="4" fill="#FFE88A"/>
-  <rect x="300" y="12" width="4" height="4" fill="#FFE88A"/>
-  <rect x="490" y="18" width="4" height="4" fill="#FFE88A"/>
-  <rect x="680" y="10" width="4" height="4" fill="#FFE88A"/>
-
+  <!-- ===== BACKGROUND ===== -->
+  <rect width="800" height="300" fill="#7CC447"/>
   <!-- Ground -->
-  <rect x="0"   y="216" width="800" height="64" fill="#7DC97D"/>
-  <rect x="0"   y="216" width="800" height="8"  fill="#6AB86A"/>
+  <rect x="0" y="238" width="800" height="62" fill="#5EA032"/>
 
-  <!-- ===== LEFT TREE ===== -->
-  <rect x="52"  y="132" width="20" height="86"  fill="#9B7320"/>
-  <rect x="64"  y="132" width="8"  height="86"  fill="#7A5A10"/>
-  <rect x="14"  y="58"  width="96" height="40"  fill="#4A9440"/>
-  <rect x="6"   y="88"  width="112" height="40" fill="#4A9440"/>
-  <rect x="18"  y="118" width="88" height="28"  fill="#4A9440"/>
-  <rect x="14"  y="58"  width="50" height="20"  fill="#5EAA52"/>
+  <!-- ===== BACKGROUND TREES ===== -->
+  <!-- Left tree -->
+  <rect x="58"  y="130" width="22" height="112" fill="#7A5A10" rx="6"/>
+  <circle cx="69"  cy="110" r="52" fill="#3A8030"/>
+  <circle cx="46"  cy="130" r="36" fill="#3A8030"/>
+  <circle cx="94"  cy="125" r="40" fill="#3A8030"/>
+  <circle cx="69"  cy="96"  r="38" fill="#4A9440"/>
+  <!-- Right tree -->
+  <rect x="720" y="140" width="22" height="100" fill="#7A5A10" rx="6"/>
+  <circle cx="731" cy="118" r="50" fill="#3A8030"/>
+  <circle cx="708" cy="138" r="36" fill="#3A8030"/>
+  <circle cx="756" cy="133" r="38" fill="#3A8030"/>
+  <circle cx="731" cy="104" r="36" fill="#4A9440"/>
 
-  <!-- ===== RIGHT TREE ===== -->
-  <rect x="728" y="144" width="20" height="74"  fill="#9B7320"/>
-  <rect x="740" y="144" width="8"  height="74"  fill="#7A5A10"/>
-  <rect x="692" y="68"  width="92" height="40"  fill="#4A9440"/>
-  <rect x="684" y="98"  width="108" height="40" fill="#4A9440"/>
-  <rect x="696" y="128" width="84" height="28"  fill="#4A9440"/>
-  <rect x="692" y="68"  width="46" height="20"  fill="#5EAA52"/>
-
-  <!-- ===== MUSHROOMS (left) ===== -->
-  <rect x="170" y="207" width="8"  height="10" fill="#F0E0C0"/>
-  <rect x="163" y="196" width="22" height="14" fill="#E84444"/>
-  <rect x="165" y="199" width="5"  height="5"  fill="#FFFFFF"/>
-  <rect x="173" y="201" width="4"  height="4"  fill="#FFFFFF"/>
-
-  <rect x="188" y="210" width="6"  height="8"  fill="#F0E0C0"/>
-  <rect x="182" y="202" width="18" height="11" fill="#E84444"/>
-  <rect x="184" y="204" width="4"  height="4"  fill="#FFFFFF"/>
+  <!-- ===== BUSHES ===== -->
+  <circle cx="185" cy="240" r="22" fill="#4A9030"/>
+  <circle cx="202" cy="236" r="24" fill="#4A9030"/>
+  <circle cx="168" cy="238" r="20" fill="#4A9030"/>
+  <circle cx="595" cy="240" r="22" fill="#4A9030"/>
+  <circle cx="612" cy="236" r="24" fill="#4A9030"/>
+  <circle cx="578" cy="238" r="20" fill="#4A9030"/>
 
   <!-- ===== FIRE ===== -->
-  <rect x="355" y="236" width="26" height="8"  fill="#9B7320"/>
-  <rect x="379" y="236" width="26" height="8"  fill="#9B7320"/>
-  <!-- outer flame -->
-  <rect x="358" y="218" width="14" height="20" fill="#FF6200"/>
-  <rect x="373" y="212" width="18" height="26" fill="#FF6200"/>
-  <rect x="391" y="218" width="14" height="20" fill="#FF6200"/>
-  <!-- inner flame -->
-  <rect x="362" y="222" width="8"  height="14" fill="#FFD700"/>
-  <rect x="377" y="216" width="10" height="18" fill="#FFD700"/>
-  <rect x="394" y="222" width="8"  height="14" fill="#FFD700"/>
+  <!-- Logs -->
+  <rect x="346" y="254" width="36" height="12" fill="#7A5010" rx="6"/>
+  <rect x="378" y="257" width="36" height="10" fill="#8B6014" rx="5"/>
+  <!-- Outer flames -->
+  <ellipse cx="366" cy="244" rx="14" ry="22" fill="#FF6200"/>
+  <ellipse cx="382" cy="238" rx="17" ry="28" fill="#FF6200"/>
+  <ellipse cx="399" cy="244" rx="13" ry="21" fill="#FF6200"/>
+  <!-- Inner flames -->
+  <ellipse cx="369" cy="247" rx="8"  ry="15" fill="#FFD700"/>
+  <ellipse cx="382" cy="241" rx="10" ry="18" fill="#FFD700"/>
+  <ellipse cx="396" cy="248" rx="7"  ry="13" fill="#FFD700"/>
 
   <!-- ===== SOUP POT ===== -->
-  <!-- handles -->
-  <rect x="340" y="196" width="14" height="10" fill="#6A6A6A"/>
-  <rect x="406" y="196" width="14" height="10" fill="#6A6A6A"/>
-  <!-- rim -->
-  <rect x="350" y="190" width="60" height="12" fill="#6A6A6A"/>
-  <!-- body -->
-  <rect x="354" y="200" width="52" height="38" fill="#4A4A4A"/>
-  <!-- soup surface -->
-  <rect x="356" y="192" width="48" height="10" fill="#FF8C42"/>
-  <!-- bubbles -->
-  <rect x="360" y="194" width="5" height="5" fill="#FFAA6A"/>
-  <rect x="373" y="193" width="6" height="6" fill="#FFAA6A"/>
-  <rect x="387" y="194" width="5" height="5" fill="#FFAA6A"/>
-  <rect x="398" y="193" width="5" height="5" fill="#FFAA6A"/>
-  <!-- steam -->
-  <rect x="364" y="182" width="4" height="6"  fill="#FFFFFF" opacity="0.5"/>
-  <rect x="364" y="174" width="4" height="5"  fill="#FFFFFF" opacity="0.3"/>
-  <rect x="379" y="178" width="4" height="8"  fill="#FFFFFF" opacity="0.5"/>
-  <rect x="379" y="168" width="4" height="6"  fill="#FFFFFF" opacity="0.3"/>
-  <rect x="394" y="182" width="4" height="6"  fill="#FFFFFF" opacity="0.5"/>
-  <rect x="394" y="174" width="4" height="5"  fill="#FFFFFF" opacity="0.3"/>
+  <!-- Pot body -->
+  <ellipse cx="382" cy="228" rx="68" ry="58" fill="#4A5568"/>
+  <!-- Pot shading highlight -->
+  <ellipse cx="358" cy="203" rx="18" ry="28" fill="#5A6A7A" opacity="0.45"/>
+  <!-- Soup surface -->
+  <ellipse cx="382" cy="182" rx="57" ry="22" fill="#F0C030"/>
+  <!-- Soup bubbles -->
+  <circle cx="364" cy="180" r="7"  fill="#FFD740"/>
+  <circle cx="381" cy="176" r="9"  fill="#FFD740"/>
+  <circle cx="400" cy="180" r="6"  fill="#FFD740"/>
+  <!-- Soup happy face (like in the game!) -->
+  <circle cx="371" cy="184" r="5"  fill="#C49A18"/>
+  <circle cx="393" cy="184" r="5"  fill="#C49A18"/>
+  <path d="M374 191 Q382 197 390 191" stroke="#C49A18" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Pot rim -->
+  <ellipse cx="382" cy="173" rx="68" ry="16" fill="#5A6580"/>
+  <!-- Handles -->
+  <rect x="302" y="192" width="34" height="16" fill="#5A6580" rx="8"/>
+  <rect x="428" y="192" width="34" height="16" fill="#5A6580" rx="8"/>
 
-  <!-- ===== LADLE ===== -->
-  <rect x="278" y="186" width="68" height="6" fill="#CD853F"/>
-  <rect x="272" y="182" width="16" height="14" fill="#B8732A"/>
+  <!-- Steam (wavy) -->
+  <path d="M357 157 Q350 144 357 131 Q364 118 357 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M382 152 Q375 136 382 121 Q389 106 382 91"  stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M407 157 Q400 144 407 131 Q414 118 407 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
 
-  <!-- ===== ORANGE CAT (left, stirring) ===== -->
-  <!-- tail -->
-  <rect x="192" y="234" width="8"  height="20" fill="#F4A460"/>
-  <rect x="184" y="222" width="14" height="16" fill="#F4A460"/>
-  <rect x="178" y="212" width="12" height="14" fill="#F4A460"/>
-  <!-- body -->
-  <rect x="204" y="194" width="54" height="44" fill="#F4A460"/>
-  <!-- body stripes -->
-  <rect x="216" y="200" width="8"  height="34" fill="#CD853F"/>
-  <rect x="234" y="200" width="8"  height="34" fill="#CD853F"/>
-  <rect x="248" y="200" width="6"  height="26" fill="#CD853F"/>
-  <!-- front paws -->
-  <rect x="208" y="234" width="18" height="8"  fill="#F4A460"/>
-  <rect x="238" y="234" width="18" height="8"  fill="#F4A460"/>
-  <!-- paw toes -->
-  <rect x="208" y="240" width="5"  height="2"  fill="#CD853F"/>
-  <rect x="215" y="240" width="5"  height="2"  fill="#CD853F"/>
-  <rect x="238" y="240" width="5"  height="2"  fill="#CD853F"/>
-  <rect x="245" y="240" width="5"  height="2"  fill="#CD853F"/>
-  <!-- head -->
-  <rect x="206" y="152" width="54" height="46" fill="#F4A460"/>
-  <!-- ear left -->
-  <rect x="206" y="140" width="18" height="18" fill="#F4A460"/>
-  <rect x="208" y="136" width="14" height="10" fill="#F4A460"/>
-  <rect x="210" y="138" width="9"  height="12" fill="#FFD0C8"/>
-  <!-- ear right -->
-  <rect x="242" y="140" width="18" height="18" fill="#F4A460"/>
-  <rect x="244" y="136" width="14" height="10" fill="#F4A460"/>
-  <rect x="246" y="138" width="9"  height="12" fill="#FFD0C8"/>
-  <!-- forehead stripe -->
-  <rect x="228" y="154" width="10" height="8"  fill="#CD853F"/>
-  <!-- eyes -->
-  <rect x="218" y="166" width="12" height="12" fill="#2C2C54"/>
-  <rect x="236" y="166" width="12" height="12" fill="#2C2C54"/>
-  <!-- eye shine -->
-  <rect x="220" y="168" width="5"  height="5"  fill="#FFFFFF"/>
-  <rect x="238" y="168" width="5"  height="5"  fill="#FFFFFF"/>
-  <!-- nose -->
-  <rect x="228" y="180" width="10" height="7"  fill="#FF9999"/>
-  <!-- mouth -->
-  <rect x="224" y="188" width="5"  height="2"  fill="#CD853F"/>
-  <rect x="236" y="188" width="5"  height="2"  fill="#CD853F"/>
-  <!-- whiskers -->
-  <rect x="202" y="178" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="202" y="184" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="252" y="178" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="252" y="184" width="12" height="2"  fill="#A0A0A0"/>
+  <!-- ===== CAT ===== -->
+  <!-- Stool -->
+  <rect x="200" y="236" width="62" height="12" fill="#B8722A" rx="5"/>
+  <rect x="210" y="246" width="8"  height="28" fill="#9B6020" rx="3"/>
+  <rect x="244" y="246" width="8"  height="28" fill="#9B6020" rx="3"/>
 
-  <!-- ===== GRAY TABBY CAT (right, watching) ===== -->
-  <!-- tail -->
-  <rect x="558" y="226" width="8"  height="18" fill="#D0D0D0"/>
-  <rect x="564" y="218" width="14" height="12" fill="#D0D0D0"/>
-  <rect x="573" y="210" width="12" height="12" fill="#D0D0D0"/>
-  <!-- body -->
-  <rect x="510" y="200" width="50" height="38" fill="#E0E0E0"/>
-  <!-- stripes -->
-  <rect x="520" y="206" width="7"  height="28" fill="#B8B8B8"/>
-  <rect x="534" y="206" width="7"  height="28" fill="#B8B8B8"/>
-  <rect x="548" y="206" width="6"  height="20" fill="#B8B8B8"/>
-  <!-- front paws -->
-  <rect x="514" y="234" width="16" height="8"  fill="#E0E0E0"/>
-  <rect x="542" y="234" width="16" height="8"  fill="#E0E0E0"/>
-  <!-- paw toes -->
-  <rect x="514" y="240" width="4"  height="2"  fill="#B8B8B8"/>
-  <rect x="520" y="240" width="4"  height="2"  fill="#B8B8B8"/>
-  <rect x="542" y="240" width="4"  height="2"  fill="#B8B8B8"/>
-  <rect x="548" y="240" width="4"  height="2"  fill="#B8B8B8"/>
-  <!-- head -->
-  <rect x="512" y="158" width="48" height="46" fill="#E0E0E0"/>
-  <!-- ear left -->
-  <rect x="512" y="146" width="16" height="18" fill="#E0E0E0"/>
-  <rect x="514" y="142" width="12" height="10" fill="#E0E0E0"/>
-  <rect x="516" y="144" width="8"  height="12" fill="#FFD0C8"/>
-  <!-- ear right -->
-  <rect x="544" y="146" width="16" height="18" fill="#E0E0E0"/>
-  <rect x="546" y="142" width="12" height="10" fill="#E0E0E0"/>
-  <rect x="548" y="144" width="8"  height="12" fill="#FFD0C8"/>
-  <!-- forehead stripe -->
-  <rect x="530" y="160" width="8"  height="6"  fill="#B8B8B8"/>
-  <!-- eyes (wide, curious, looking left toward pot) -->
-  <rect x="518" y="170" width="12" height="12" fill="#2A6EBB"/>
-  <rect x="536" y="170" width="12" height="12" fill="#2A6EBB"/>
-  <!-- eye shine -->
-  <rect x="520" y="172" width="5"  height="5"  fill="#FFFFFF"/>
-  <rect x="538" y="172" width="5"  height="5"  fill="#FFFFFF"/>
-  <!-- nose -->
-  <rect x="529" y="184" width="9"  height="6"  fill="#FF9999"/>
-  <!-- mouth -->
-  <rect x="526" y="191" width="4"  height="2"  fill="#B8B8B8"/>
-  <rect x="538" y="191" width="4"  height="2"  fill="#B8B8B8"/>
-  <!-- whiskers -->
-  <rect x="498" y="182" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="498" y="188" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="558" y="182" width="12" height="2"  fill="#A0A0A0"/>
-  <rect x="558" y="188" width="12" height="2"  fill="#A0A0A0"/>
+  <!-- Tail -->
+  <path d="M195 258 Q162 228 168 200 Q174 180 185 172"
+        stroke="#EEEEEE" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <path d="M195 258 Q162 228 168 200 Q174 180 185 172"
+        stroke="#F8F8F8" stroke-width="12" fill="none" stroke-linecap="round"/>
 
-  <!-- ===== GRASS BLADES ===== -->
-  <rect x="154" y="206" width="4" height="12" fill="#5AA05A"/>
-  <rect x="162" y="203" width="4" height="15" fill="#5AA05A"/>
-  <rect x="600" y="206" width="4" height="12" fill="#5AA05A"/>
-  <rect x="610" y="203" width="4" height="15" fill="#5AA05A"/>
-  <rect x="626" y="207" width="4" height="10" fill="#5AA05A"/>
+  <!-- Body -->
+  <ellipse cx="230" cy="210" rx="48" ry="52" fill="#F5F5F5"/>
+
+  <!-- Arm extended toward pot -->
+  <rect x="265" y="189" width="90" height="19" fill="#ECECEC" rx="9"/>
+  <!-- Hand/paw -->
+  <circle cx="356" cy="198" r="11" fill="#E8E8E8"/>
+
+  <!-- Ladle handle -->
+  <rect x="352" y="176" width="7" height="68" fill="#CD853F" rx="3"/>
+  <!-- Ladle cup -->
+  <ellipse cx="355" cy="178" rx="12" ry="9" fill="#A0785A"/>
+
+  <!-- Head -->
+  <circle cx="230" cy="146" r="60" fill="#F5F5F5"/>
+
+  <!-- Ears -->
+  <ellipse cx="196" cy="98"  rx="20" ry="26" fill="#F0F0F0"/>
+  <ellipse cx="265" cy="98"  rx="20" ry="26" fill="#F0F0F0"/>
+  <ellipse cx="196" cy="101" rx="11" ry="16" fill="#FFD0C8"/>
+  <ellipse cx="265" cy="101" rx="11" ry="16" fill="#FFD0C8"/>
+
+  <!-- ===== STRAW HAT ===== -->
+  <!-- Crown -->
+  <rect x="174" y="50" width="112" height="56" fill="#D4A030" rx="24"/>
+  <ellipse cx="230" cy="50"  rx="56" ry="18" fill="#D4A030"/>
+  <!-- Crown highlight -->
+  <ellipse cx="210" cy="60"  rx="28" ry="10" fill="#E0B840" opacity="0.55"/>
+  <!-- Brim -->
+  <ellipse cx="230" cy="100" rx="82" ry="24" fill="#D4A030"/>
+  <ellipse cx="204" cy="96"  rx="34" ry="9"  fill="#E0B840" opacity="0.45"/>
+  <!-- Hat band -->
+  <rect x="174" y="92"  width="112" height="12" fill="#B8862A" rx="4"/>
+
+  <!-- ===== FACE ===== -->
+  <!-- Eyes (simple + focused, like the game) -->
+  <circle cx="214" cy="148" r="9"  fill="#2A2A2A"/>
+  <circle cx="247" cy="148" r="9"  fill="#2A2A2A"/>
+  <circle cx="216" cy="145" r="3.5" fill="#FFFFFF"/>
+  <circle cx="249" cy="145" r="3.5" fill="#FFFFFF"/>
+  <!-- Nose -->
+  <ellipse cx="230" cy="161" rx="5.5" ry="4.5" fill="#FF9999"/>
+  <!-- Mouth -->
+  <path d="M223 167 Q230 173 237 167" stroke="#CCCCCC" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Whiskers -->
+  <line x1="173" y1="158" x2="210" y2="163" stroke="#C8C8C8" stroke-width="1.6"/>
+  <line x1="173" y1="166" x2="210" y2="167" stroke="#C8C8C8" stroke-width="1.6"/>
+  <line x1="251" y1="163" x2="288" y2="158" stroke="#C8C8C8" stroke-width="1.6"/>
+  <line x1="251" y1="167" x2="288" y2="166" stroke="#C8C8C8" stroke-width="1.6"/>
+
+  <!-- ===== LANTERN (right of pot) ===== -->
+  <!-- Stand -->
+  <rect x="496" y="218" width="8" height="24" fill="#8B6914" rx="2"/>
+  <rect x="488" y="236" width="24" height="6"  fill="#8B6914" rx="3"/>
+  <!-- Glow -->
+  <circle cx="500" cy="210" r="44" fill="#FFD700" opacity="0.09"/>
+  <!-- Lantern body -->
+  <rect x="487" y="192" width="26" height="36" fill="none" stroke="#CD853F" stroke-width="2.5" rx="6"/>
+  <ellipse cx="500" cy="210" rx="18" ry="22" fill="#F5C842" opacity="0.75"/>
+  <rect x="487" y="192" width="26" height="36" fill="none" stroke="#CD853F" stroke-width="2" rx="6"/>
+  <!-- Lantern top/bottom caps -->
+  <rect x="484" y="188" width="32" height="8"  fill="#CD853F" rx="4"/>
+  <rect x="484" y="228" width="32" height="8"  fill="#CD853F" rx="4"/>
+  <!-- Hanger -->
+  <rect x="497" y="178" width="6"  height="14" fill="#CD853F" rx="3"/>
+
+  <!-- ===== MUSHROOMS ===== -->
+  <rect x="548" y="226" width="9"  height="16" fill="#F0E0C0" rx="3"/>
+  <ellipse cx="552" cy="226" rx="16" ry="11" fill="#E84444"/>
+  <circle cx="547" cy="221" r="3.5" fill="#FFFFFF"/>
+  <circle cx="556" cy="222" r="2.5" fill="#FFFFFF"/>
+
+  <rect x="565" y="232" width="7"  height="11" fill="#F0E0C0" rx="2"/>
+  <ellipse cx="568" cy="232" rx="11" ry="8"  fill="#C03030"/>
+  <circle cx="565" cy="228" r="2.5" fill="#FFFFFF"/>
 
   <!-- ===== FLOWERS ===== -->
-  <rect x="127" y="210" width="6"  height="6"  fill="#FFE44D"/>
-  <rect x="125" y="208" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="131" y="208" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="125" y="214" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="131" y="214" width="4"  height="4"  fill="#FFFFFF"/>
+  <!-- Yellow flower left -->
+  <circle cx="130" cy="245" r="6"  fill="#FFE44D"/>
+  <circle cx="122" cy="240" r="5"  fill="#FFFFFF"/>
+  <circle cx="130" cy="236" r="5"  fill="#FFFFFF"/>
+  <circle cx="138" cy="240" r="5"  fill="#FFFFFF"/>
+  <circle cx="138" cy="250" r="5"  fill="#FFFFFF"/>
+  <circle cx="122" cy="250" r="5"  fill="#FFFFFF"/>
 
-  <rect x="652" y="210" width="6"  height="6"  fill="#FF9FD6"/>
-  <rect x="650" y="208" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="656" y="208" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="650" y="214" width="4"  height="4"  fill="#FFFFFF"/>
-  <rect x="656" y="214" width="4"  height="4"  fill="#FFFFFF"/>
+  <!-- Pink flower right -->
+  <circle cx="655" cy="245" r="6"  fill="#FFB6D6"/>
+  <circle cx="647" cy="240" r="5"  fill="#FFFFFF"/>
+  <circle cx="655" cy="236" r="5"  fill="#FFFFFF"/>
+  <circle cx="663" cy="240" r="5"  fill="#FFFFFF"/>
+  <circle cx="663" cy="250" r="5"  fill="#FFFFFF"/>
+  <circle cx="647" cy="250" r="5"  fill="#FFFFFF"/>
 
-  <!-- ===== SMALL BERRIES ===== -->
-  <rect x="460" y="214" width="5" height="5" fill="#FF5050"/>
-  <rect x="470" y="211" width="5" height="5" fill="#FF5050"/>
-  <rect x="480" y="215" width="4" height="4" fill="#FF5050"/>
-  <rect x="323" y="214" width="5" height="5" fill="#FF5050"/>
+  <!-- Berries -->
+  <circle cx="460" cy="244" r="5"  fill="#FF5050"/>
+  <circle cx="471" cy="241" r="5"  fill="#FF5050"/>
+  <circle cx="481" cy="245" r="4"  fill="#FF5050"/>
 </svg>
