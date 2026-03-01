@@ -23,7 +23,7 @@
     <circle cx="44" cy="-4" r="3" fill="#A8D4F0"/>
   </g>
 
-  <!-- ===== SPEECH BUBBLES (empty) ===== -->
+  <!-- ===== SPEECH BUBBLES ===== -->
   <rect x="292" y="44" width="114" height="58" fill="white" rx="10"/>
   <polygon points="308,102 320,120 334,102" fill="white"/>
   <rect x="350" y="18" width="80" height="38" fill="white" rx="8"/>
@@ -32,6 +32,48 @@
   <polygon points="456,130 466,146 480,130" fill="white"/>
   <rect x="548" y="55" width="88" height="46" fill="white" rx="9"/>
   <polygon points="560,101 570,115 583,101" fill="white"/>
+
+  <!-- ===== FLOWCHART CONTENT ===== -->
+  <!-- Bubble 1: Data → AI → Action / Deploy -->
+  <rect x="298" y="51" width="25" height="13" fill="#EEF2FF" stroke="#818CF8" stroke-width="0.8" rx="2"/>
+  <text x="311" y="60" font-size="7" text-anchor="middle" fill="#4338CA" font-family="sans-serif">Data</text>
+  <polygon points="324,57 328,59 324,61" fill="#818CF8"/>
+  <rect x="329" y="51" width="18" height="13" fill="#EEF2FF" stroke="#818CF8" stroke-width="0.8" rx="2"/>
+  <text x="338" y="60" font-size="7" text-anchor="middle" fill="#4338CA" font-family="sans-serif">AI</text>
+  <polygon points="349,57 353,59 349,61" fill="#818CF8"/>
+  <rect x="354" y="51" width="34" height="13" fill="#EEF2FF" stroke="#818CF8" stroke-width="0.8" rx="2"/>
+  <text x="371" y="60" font-size="7" text-anchor="middle" fill="#4338CA" font-family="sans-serif">Action</text>
+  <line x1="338" y1="64" x2="338" y2="72" stroke="#818CF8" stroke-width="0.8"/>
+  <polygon points="335,72 341,72 338,76" fill="#818CF8"/>
+  <rect x="321" y="76" width="34" height="13" fill="#F0FDF4" stroke="#34D399" stroke-width="0.8" rx="2"/>
+  <text x="338" y="85" font-size="7" text-anchor="middle" fill="#065F46" font-family="sans-serif">Deploy</text>
+
+  <!-- Bubble 2: Code → Run -->
+  <rect x="355" y="24" width="26" height="13" fill="#FEF3C7" stroke="#F59E0B" stroke-width="0.8" rx="2"/>
+  <text x="368" y="33" font-size="7" text-anchor="middle" fill="#92400E" font-family="sans-serif">Code</text>
+  <polygon points="382,30 386,32 382,34" fill="#F59E0B"/>
+  <rect x="387" y="24" width="22" height="13" fill="#FEF3C7" stroke="#F59E0B" stroke-width="0.8" rx="2"/>
+  <text x="398" y="33" font-size="7" text-anchor="middle" fill="#92400E" font-family="sans-serif">Run</text>
+
+  <!-- Bubble 3: User → Agent → Result -->
+  <rect x="448" y="87" width="26" height="13" fill="#EEF2FF" stroke="#818CF8" stroke-width="0.8" rx="2"/>
+  <text x="461" y="96" font-size="7" text-anchor="middle" fill="#4338CA" font-family="sans-serif">User</text>
+  <polygon points="476,93 480,95 476,97" fill="#818CF8"/>
+  <rect x="481" y="87" width="32" height="13" fill="#EEF2FF" stroke="#818CF8" stroke-width="0.8" rx="2"/>
+  <text x="497" y="96" font-size="7" text-anchor="middle" fill="#4338CA" font-family="sans-serif">Agent</text>
+  <line x1="497" y1="100" x2="497" y2="108" stroke="#818CF8" stroke-width="0.8"/>
+  <polygon points="494,108 500,108 497,112" fill="#818CF8"/>
+  <rect x="481" y="112" width="32" height="13" fill="#FDF2F8" stroke="#EC4899" stroke-width="0.8" rx="2"/>
+  <text x="497" y="121" font-size="7" text-anchor="middle" fill="#831843" font-family="sans-serif">Result</text>
+
+  <!-- Bubble 4: Plan → Do ✓ -->
+  <rect x="554" y="62" width="22" height="13" fill="#F0FDF4" stroke="#34D399" stroke-width="0.8" rx="2"/>
+  <text x="565" y="71" font-size="7" text-anchor="middle" fill="#065F46" font-family="sans-serif">Plan</text>
+  <polygon points="578,68 582,70 578,72" fill="#34D399"/>
+  <rect x="583" y="62" width="18" height="13" fill="#F0FDF4" stroke="#34D399" stroke-width="0.8" rx="2"/>
+  <text x="592" y="71" font-size="7" text-anchor="middle" fill="#065F46" font-family="sans-serif">Do</text>
+  <line x1="592" y1="75" x2="592" y2="81" stroke="#34D399" stroke-width="0.8"/>
+  <text x="592" y="92" font-size="12" text-anchor="middle" fill="#10B981">&#x2713;</text>
 
   <!-- ===== BUILDINGS ===== -->
   <rect x="618" y="65"  width="56" height="193" fill="#C2D2E2" rx="3"/>
@@ -97,6 +139,34 @@
   <path d="M597 228 Q608 217 611 208" stroke="#FFD8B0" stroke-width="7" fill="none" stroke-linecap="round"/>
   <circle cx="612" cy="205" r="6" fill="#FFD8B0"/>
   <path d="M579 213 Q585 219 591 213" stroke="#BB8866" stroke-width="1.8" fill="none"/>
+
+  <!-- ===== CAT CHARACTER ===== -->
+  <!-- Shadow -->
+  <ellipse cx="430" cy="276" rx="14" ry="4" fill="#2A88BF" opacity="0.15"/>
+  <!-- Body -->
+  <ellipse cx="430" cy="265" rx="12" ry="11" fill="#9A9A9A"/>
+  <!-- Head -->
+  <circle cx="430" cy="248" r="11" fill="#9A9A9A"/>
+  <!-- Left ear -->
+  <polygon points="422,240 419,228 427,238" fill="#9A9A9A"/>
+  <polygon points="422,239 421,231 426,238" fill="#FFB6C1" opacity="0.8"/>
+  <!-- Right ear -->
+  <polygon points="438,240 441,228 433,238" fill="#9A9A9A"/>
+  <polygon points="438,239 439,231 434,238" fill="#FFB6C1" opacity="0.8"/>
+  <!-- Eyes (happy/sleepy) -->
+  <path d="M425 246 Q428 244 430 246" stroke="#2A2A2A" stroke-width="1.5" fill="none"/>
+  <path d="M430 246 Q433 244 436 246" stroke="#2A2A2A" stroke-width="1.5" fill="none"/>
+  <!-- Nose -->
+  <ellipse cx="430" cy="251" rx="2" ry="1.5" fill="#FFB0B8"/>
+  <!-- Mouth -->
+  <path d="M427 253 Q430 256 433 253" stroke="#888" stroke-width="0.8" fill="none"/>
+  <!-- Whiskers -->
+  <line x1="418" y1="250" x2="427" y2="251" stroke="#CCC" stroke-width="0.7"/>
+  <line x1="418" y1="253" x2="427" y2="253" stroke="#CCC" stroke-width="0.7"/>
+  <line x1="433" y1="251" x2="442" y2="250" stroke="#CCC" stroke-width="0.7"/>
+  <line x1="433" y1="253" x2="442" y2="253" stroke="#CCC" stroke-width="0.7"/>
+  <!-- Tail -->
+  <path d="M442 272 Q454 260 448 248" stroke="#9A9A9A" stroke-width="5" fill="none" stroke-linecap="round"/>
 
   <!-- ===== RUNNING BUNNY ===== -->
 
