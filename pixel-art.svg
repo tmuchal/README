@@ -28,120 +28,114 @@
   <circle cx="578" cy="238" r="20" fill="#4A9030"/>
 
   <!-- ===== FIRE ===== -->
-  <!-- Logs -->
   <rect x="346" y="254" width="36" height="12" fill="#7A5010" rx="6"/>
   <rect x="378" y="257" width="36" height="10" fill="#8B6014" rx="5"/>
-  <!-- Outer flames -->
   <ellipse cx="366" cy="244" rx="14" ry="22" fill="#FF6200"/>
   <ellipse cx="382" cy="238" rx="17" ry="28" fill="#FF6200"/>
   <ellipse cx="399" cy="244" rx="13" ry="21" fill="#FF6200"/>
-  <!-- Inner flames -->
   <ellipse cx="369" cy="247" rx="8"  ry="15" fill="#FFD700"/>
   <ellipse cx="382" cy="241" rx="10" ry="18" fill="#FFD700"/>
   <ellipse cx="396" cy="248" rx="7"  ry="13" fill="#FFD700"/>
 
   <!-- ===== SOUP POT ===== -->
-  <!-- Pot body -->
   <ellipse cx="382" cy="228" rx="68" ry="58" fill="#4A5568"/>
-  <!-- Pot shading highlight -->
   <ellipse cx="358" cy="203" rx="18" ry="28" fill="#5A6A7A" opacity="0.45"/>
-  <!-- Soup surface -->
   <ellipse cx="382" cy="182" rx="57" ry="22" fill="#F0C030"/>
-  <!-- Soup bubbles -->
   <circle cx="364" cy="180" r="7"  fill="#FFD740"/>
   <circle cx="381" cy="176" r="9"  fill="#FFD740"/>
   <circle cx="400" cy="180" r="6"  fill="#FFD740"/>
-  <!-- Soup happy face (like in the game!) -->
   <circle cx="371" cy="184" r="5"  fill="#C49A18"/>
   <circle cx="393" cy="184" r="5"  fill="#C49A18"/>
   <path d="M374 191 Q382 197 390 191" stroke="#C49A18" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Pot rim -->
   <ellipse cx="382" cy="173" rx="68" ry="16" fill="#5A6580"/>
-  <!-- Handles -->
   <rect x="302" y="192" width="34" height="16" fill="#5A6580" rx="8"/>
   <rect x="428" y="192" width="34" height="16" fill="#5A6580" rx="8"/>
 
-  <!-- Steam (wavy) -->
+  <!-- Steam -->
   <path d="M357 157 Q350 144 357 131 Q364 118 357 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
   <path d="M382 152 Q375 136 382 121 Q389 106 382 91"  stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
   <path d="M407 157 Q400 144 407 131 Q414 118 407 105" stroke="#FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6"/>
 
-  <!-- ===== CAT ===== -->
+  <!-- ===== BUNNY ===== -->
   <!-- Stool -->
   <rect x="200" y="236" width="62" height="12" fill="#B8722A" rx="5"/>
   <rect x="210" y="246" width="8"  height="28" fill="#9B6020" rx="3"/>
   <rect x="244" y="246" width="8"  height="28" fill="#9B6020" rx="3"/>
 
-  <!-- Tail -->
-  <path d="M195 258 Q162 228 168 200 Q174 180 185 172"
-        stroke="#EEEEEE" stroke-width="18" fill="none" stroke-linecap="round"/>
-  <path d="M195 258 Q162 228 168 200 Q174 180 185 172"
-        stroke="#F8F8F8" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- Bunny tail (small round at back) -->
+  <circle cx="186" cy="234" r="13" fill="#F0F0F0"/>
 
-  <!-- Body -->
-  <ellipse cx="230" cy="210" rx="48" ry="52" fill="#F5F5F5"/>
+  <!-- Pants (lower body, dark) -->
+  <ellipse cx="230" cy="232" rx="44" ry="26" fill="#222222"/>
+
+  <!-- Body / Shirt (white) -->
+  <ellipse cx="230" cy="208" rx="46" ry="50" fill="#F5F5F5"/>
 
   <!-- Arm extended toward pot -->
-  <rect x="265" y="189" width="90" height="19" fill="#ECECEC" rx="9"/>
+  <rect x="265" y="189" width="88" height="18" fill="#ECECEC" rx="9"/>
   <!-- Hand/paw -->
-  <circle cx="356" cy="198" r="11" fill="#E8E8E8"/>
+  <circle cx="354" cy="198" r="11" fill="#E8E8E8"/>
 
   <!-- Ladle handle -->
   <rect x="352" y="176" width="7" height="68" fill="#CD853F" rx="3"/>
   <!-- Ladle cup -->
   <ellipse cx="355" cy="178" rx="12" ry="9" fill="#A0785A"/>
 
+  <!-- Snowflake asterisk on shirt (6-arm) -->
+  <line x1="230" y1="194" x2="230" y2="220" stroke="#A0BEDD" stroke-width="3.2" stroke-linecap="round"/>
+  <line x1="217" y1="200" x2="243" y2="214" stroke="#A0BEDD" stroke-width="3.2" stroke-linecap="round"/>
+  <line x1="217" y1="214" x2="243" y2="200" stroke="#A0BEDD" stroke-width="3.2" stroke-linecap="round"/>
+  <!-- Snowflake arm tips -->
+  <line x1="230" y1="194" x2="226" y2="190" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="230" y1="194" x2="234" y2="190" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="230" y1="220" x2="226" y2="224" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="230" y1="220" x2="234" y2="224" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="217" y1="200" x2="213" y2="198" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="217" y1="200" x2="215" y2="204" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="243" y1="214" x2="247" y2="216" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="243" y1="214" x2="245" y2="210" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="217" y1="214" x2="213" y2="216" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="217" y1="214" x2="215" y2="210" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="243" y1="200" x2="247" y2="198" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+  <line x1="243" y1="200" x2="245" y2="204" stroke="#A0BEDD" stroke-width="2" stroke-linecap="round"/>
+
   <!-- Head -->
-  <circle cx="230" cy="146" r="60" fill="#F5F5F5"/>
+  <circle cx="230" cy="148" r="56" fill="#F5F5F5"/>
 
-  <!-- Ears -->
-  <ellipse cx="196" cy="98"  rx="20" ry="26" fill="#F0F0F0"/>
-  <ellipse cx="265" cy="98"  rx="20" ry="26" fill="#F0F0F0"/>
-  <ellipse cx="196" cy="101" rx="11" ry="16" fill="#FFD0C8"/>
-  <ellipse cx="265" cy="101" rx="11" ry="16" fill="#FFD0C8"/>
+  <!-- ===== LONG RABBIT EARS ===== -->
+  <!-- Left ear outer -->
+  <ellipse cx="206" cy="68" rx="17" ry="50" fill="#F0F0F0"/>
+  <!-- Left ear inner -->
+  <ellipse cx="206" cy="72" rx="9"  ry="34" fill="#FFC8C0"/>
+  <!-- Right ear outer -->
+  <ellipse cx="254" cy="68" rx="17" ry="50" fill="#F0F0F0"/>
+  <!-- Right ear inner -->
+  <ellipse cx="254" cy="72" rx="9"  ry="34" fill="#FFC8C0"/>
 
-  <!-- ===== STRAW HAT ===== -->
-  <!-- Crown -->
-  <rect x="174" y="50" width="112" height="56" fill="#D4A030" rx="24"/>
-  <ellipse cx="230" cy="50"  rx="56" ry="18" fill="#D4A030"/>
-  <!-- Crown highlight -->
-  <ellipse cx="210" cy="60"  rx="28" ry="10" fill="#E0B840" opacity="0.55"/>
-  <!-- Brim -->
-  <ellipse cx="230" cy="100" rx="82" ry="24" fill="#D4A030"/>
-  <ellipse cx="204" cy="96"  rx="34" ry="9"  fill="#E0B840" opacity="0.45"/>
-  <!-- Hat band -->
-  <rect x="174" y="92"  width="112" height="12" fill="#B8862A" rx="4"/>
-
-  <!-- ===== FACE ===== -->
-  <!-- Eyes (simple + focused, like the game) -->
-  <circle cx="214" cy="148" r="9"  fill="#2A2A2A"/>
-  <circle cx="247" cy="148" r="9"  fill="#2A2A2A"/>
-  <circle cx="216" cy="145" r="3.5" fill="#FFFFFF"/>
-  <circle cx="249" cy="145" r="3.5" fill="#FFFFFF"/>
-  <!-- Nose -->
-  <ellipse cx="230" cy="161" rx="5.5" ry="4.5" fill="#FF9999"/>
+  <!-- ===== BUNNY FACE ===== -->
+  <!-- Eyes (large cute dots) -->
+  <circle cx="214" cy="150" r="8"   fill="#2A2A2A"/>
+  <circle cx="246" cy="150" r="8"   fill="#2A2A2A"/>
+  <!-- Eye shine -->
+  <circle cx="216" cy="146" r="3"   fill="#FFFFFF"/>
+  <circle cx="248" cy="146" r="3"   fill="#FFFFFF"/>
+  <!-- Nose (tiny pink) -->
+  <ellipse cx="230" cy="163" rx="4.5" ry="3.5" fill="#FFB0B0"/>
   <!-- Mouth -->
-  <path d="M223 167 Q230 173 237 167" stroke="#CCCCCC" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-  <!-- Whiskers -->
-  <line x1="173" y1="158" x2="210" y2="163" stroke="#C8C8C8" stroke-width="1.6"/>
-  <line x1="173" y1="166" x2="210" y2="167" stroke="#C8C8C8" stroke-width="1.6"/>
-  <line x1="251" y1="163" x2="288" y2="158" stroke="#C8C8C8" stroke-width="1.6"/>
-  <line x1="251" y1="167" x2="288" y2="166" stroke="#C8C8C8" stroke-width="1.6"/>
+  <path d="M225 169 Q230 174 235 169" stroke="#CCCCCC" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Cheek blush (subtle pink) -->
+  <ellipse cx="202" cy="162" rx="10" ry="6" fill="#FFD0D0" opacity="0.5"/>
+  <ellipse cx="258" cy="162" rx="10" ry="6" fill="#FFD0D0" opacity="0.5"/>
 
-  <!-- ===== LANTERN (right of pot) ===== -->
-  <!-- Stand -->
+  <!-- ===== LANTERN ===== -->
   <rect x="496" y="218" width="8" height="24" fill="#8B6914" rx="2"/>
   <rect x="488" y="236" width="24" height="6"  fill="#8B6914" rx="3"/>
-  <!-- Glow -->
   <circle cx="500" cy="210" r="44" fill="#FFD700" opacity="0.09"/>
-  <!-- Lantern body -->
   <rect x="487" y="192" width="26" height="36" fill="none" stroke="#CD853F" stroke-width="2.5" rx="6"/>
   <ellipse cx="500" cy="210" rx="18" ry="22" fill="#F5C842" opacity="0.75"/>
   <rect x="487" y="192" width="26" height="36" fill="none" stroke="#CD853F" stroke-width="2" rx="6"/>
-  <!-- Lantern top/bottom caps -->
   <rect x="484" y="188" width="32" height="8"  fill="#CD853F" rx="4"/>
   <rect x="484" y="228" width="32" height="8"  fill="#CD853F" rx="4"/>
-  <!-- Hanger -->
   <rect x="497" y="178" width="6"  height="14" fill="#CD853F" rx="3"/>
 
   <!-- ===== MUSHROOMS ===== -->
@@ -155,7 +149,6 @@
   <circle cx="565" cy="228" r="2.5" fill="#FFFFFF"/>
 
   <!-- ===== FLOWERS ===== -->
-  <!-- Yellow flower left -->
   <circle cx="130" cy="245" r="6"  fill="#FFE44D"/>
   <circle cx="122" cy="240" r="5"  fill="#FFFFFF"/>
   <circle cx="130" cy="236" r="5"  fill="#FFFFFF"/>
@@ -163,7 +156,6 @@
   <circle cx="138" cy="250" r="5"  fill="#FFFFFF"/>
   <circle cx="122" cy="250" r="5"  fill="#FFFFFF"/>
 
-  <!-- Pink flower right -->
   <circle cx="655" cy="245" r="6"  fill="#FFB6D6"/>
   <circle cx="647" cy="240" r="5"  fill="#FFFFFF"/>
   <circle cx="655" cy="236" r="5"  fill="#FFFFFF"/>
