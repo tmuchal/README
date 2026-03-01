@@ -1,113 +1,117 @@
 <div align="center">
 
-<img src="./pixel-art.svg" width="800" alt="냥냥 숲의 개발자" />
+<img src="./pixel-art.svg" width="800" alt="uchal" />
 
 <br/>
 
-# 🍲 안녕하세요, 코드 수프 끓이는 고양이입니다
+# 우철 (uchal)
 
-> *오늘도 숲속에서 열심히 수프를 끓이는 중이에요...*
+### AI 중심 대기업 Manager · PM
 
-[![GitHub followers](https://img.shields.io/github/followers/tmuchal?style=flat-square&logo=github&color=F4A460&labelColor=4A3728&label=followers)](https://github.com/tmuchal)
+> *"지식에 대한 갈망, 사람과의 만남을 통해 전략적인 결과물에 생명력이 있는 프로젝트를 만듭니다"*
+
+[![GitHub followers](https://img.shields.io/github/followers/tmuchal?style=flat-square&logo=github&color=6366F1&labelColor=1E1B4B&label=followers)](https://github.com/tmuchal)
 &nbsp;
-[![GitHub stars](https://img.shields.io/github/stars/tmuchal?style=flat-square&logo=github&color=FFD700&labelColor=4A3728&label=stars)](https://github.com/tmuchal)
+[![GitHub stars](https://img.shields.io/github/stars/tmuchal?style=flat-square&logo=github&color=818CF8&labelColor=1E1B4B&label=stars)](https://github.com/tmuchal)
 
 </div>
 
 ---
 
-## 🐾 이 고양이에 대하여
+## About
 
-```
-  /\_____/\
- ( ◕ ω ◕  )   오늘도 코드 수프를 끓이고 있어요
-  > 　    <    버그라는 벌레도 가끔 잡고요
-   ~~~~~~     맛있는 결과물이 나올 때까지 ~
-```
-
-숲속 작은 냄비 앞에 앉아 코드를 끓이고 있는 개발자 고양이입니다 🍃
-
-- 🌿 좋은 코드가 좋은 수프처럼 우러나올 때까지 기다릴 줄 아는 편이에요
-- 🐛 버그(벌레)는 두렵지 않아요, 사냥이 취미거든요
-- 🍄 새로운 기술은 숲에서 발견하는 버섯처럼 설레요
-- 🌙 달빛 아래 디버깅도 나쁘지 않아요 (사실 좀 무서워요)
-- ☕ 커피가 없으면 수프도 안 끓여요
+창조하거나 설득하는 이론적 공부와, 사람들과의 만남으로 그들의 놀라움을 받아들입니다.
+관련 없는 모든 것들을 연결해 익숙하면서도 색다른 프로젝트로 탄생시킵니다.
+복잡한 것들도 쉽게 풀어버리는 위트로 **AI × 블록체인** 두 도메인을 동시에 빌드업하는 PM입니다.
 
 ---
 
-## 🧰 수프 재료 (Tech Stack)
+## Focus Area
+
+### Enterprise AI (DX → AX)
+
+> 내부 데이터 기반 전방위 엔터프라이즈 AI 전환
+
+- 사내 데이터 구조화 및 AI 연동 (DX → AX Pipeline)
+- 전사 AI 전략 기획 및 실행 관리
+- AI 도입 ROI 설계 및 이해관계자 커뮤니케이션
+
+### AI Chatbot & AI Agent
+
+> 고객 접점을 바꾸는 행동 지향형 AI
+
+- 고객 Q&A 자동화 · 예약 및 행동 유도 AI 챗봇
+- 멀티 스텝 태스크 수행 AI 에이전트 설계
+- 사용자 의도 분류 → 액션 실행까지 End-to-End 기획
+
+### Voice AI · AI Lounge
+
+> 현장을 바꾸는 음성 기반 AI 서비스
+
+- 현장 음성 인식 서비스 기획 및 운영
+- AI 라운지 경험 설계 (오프라인 AI 접점)
+- 음성 → 액션 플로우 설계
+
+### Blockchain
+
+> AI와 블록체인을 동시에 빌드업
+
+- 블록체인 기반 서비스 기획
+- AI × 블록체인 융합 프로젝트 매니지먼트
+
+---
+
+## PM Toolkit
 
 <div align="center">
 
-**Language**
+**Strategy & Planning**
 
-[![Skills](https://skillicons.dev/icons?i=js,ts,python,java&theme=light)](https://skillicons.dev)
+`Product Roadmap` &nbsp;`OKR` &nbsp;`User Story Mapping` &nbsp;`Stakeholder Management`
 
-**Frontend**
+**AI Tools**
 
-[![Skills](https://skillicons.dev/icons?i=react,nextjs,html,css,tailwind&theme=light)](https://skillicons.dev)
+`ChatGPT` &nbsp;`Claude` &nbsp;`Perplexity` &nbsp;`Cursor` &nbsp;`Midjourney`
 
-**Backend & DB**
+**Collaboration**
 
-[![Skills](https://skillicons.dev/icons?i=nodejs,express,postgresql,mongodb,redis&theme=light)](https://skillicons.dev)
+[![Skills](https://skillicons.dev/icons?i=notion,figma,github&theme=dark)](https://skillicons.dev)
 
-**Tools**
+**Blockchain**
 
-[![Skills](https://skillicons.dev/icons?i=git,docker,linux,vscode,github&theme=light)](https://skillicons.dev)
+`Web3` &nbsp;`Smart Contract` &nbsp;`Tokenomics` &nbsp;`DAO`
 
 </div>
 
 ---
 
-## 📊 수프 끓인 기록 (GitHub Stats)
+## GitHub Stats
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=tmuchal&show_icons=true&theme=swift&bg_color=FDF6EC&border_color=F4A460&icon_color=CD853F&title_color=8B5E3C&text_color=4A3728&hide_border=false" />
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=tmuchal&show_icons=true&theme=midnight-purple&hide_border=true&icon_color=818CF8&title_color=6366F1&text_color=C7D2FE" />
 &nbsp;
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tmuchal&layout=compact&theme=swift&bg_color=FDF6EC&border_color=F4A460&title_color=8B5E3C&text_color=4A3728" />
-
-</div>
-
-<div align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=tmuchal&theme=swift&background=FDF6EC&border=F4A460&stroke=F4A460&ring=CD853F&fire=FF7043&currStreakNum=4A3728&sideNums=4A3728&currStreakLabel=8B5E3C&sideLabels=8B5E3C&dates=9E8272" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tmuchal&layout=compact&theme=midnight-purple&hide_border=true&title_color=6366F1&text_color=C7D2FE" />
 
 </div>
 
 ---
 
-## 🌿 오늘의 수프 메뉴 (Current Work)
+## Now Building
 
 ```
-🍲 메인 수프   ████████████░░  열심히 끓이는 중...
-🥕 재료 추가   ██████░░░░░░░░  새 기능 개발 중...
-🔥 불 조절    ████████████░░  커밋 스트릭 유지!
+Enterprise AI     ████████████░░  DX → AX 전환 설계 중
+AI Agent          ██████████░░░░  고객 접점 에이전트 기획
+Voice AI Lounge   ████████░░░░░░  현장 음성 서비스 런칭 준비
+Blockchain × AI   ██████░░░░░░░░  융합 프로젝트 빌드업 중
 ```
-
-> 🍵 **지금 이 냄비에 담긴 것:** 사이드 프로젝트 빌딩 중
-
----
-
-## 🏅 수프 레시피 달성 (Achievements)
-
-| 뱃지 | 업적 |
-|------|------|
-| 🌱 첫 새싹 | 첫 번째 커밋 |
-| 🍄 버섯 수집가 | 레포지토리 5개 달성 |
-| 🌙 달빛 요리사 | 새벽 2시 커밋 |
-| 🔥 불꽃 마스터 | 커밋 스트릭 유지 중 |
-| 🐛 벌레 사냥꾼 | 버그 잡는 자 |
-| ☕ 커피 중독자 | 코딩 마라톤 생존 |
 
 ---
 
 <div align="center">
 
-🍃 *방문해 주셔서 감사해요! 수프 한 그릇 드시고 가세요* 🍃
+**복잡한 세상을 연결하는 PM · AI × Blockchain**
 
-<br/>
-
-**냥냥 개발자의 숲 · 오늘도 맛있는 코드를 만들고 있어요**
+`AI` &nbsp;`Enterprise` &nbsp;`Chatbot` &nbsp;`Agent` &nbsp;`Voice` &nbsp;`Blockchain` &nbsp;`PM`
 
 </div>
