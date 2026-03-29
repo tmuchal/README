@@ -33,37 +33,93 @@ jobs:
       - name: Run Vivino scraper
         run: |
           python3 - <<'PYEOF'
-          import csv, re, time, json, os
+          import csv, re, time, json
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.chrome.service import Service
           from selenium.webdriver.common.by import By
           from webdriver_manager.chrome import ChromeDriverManager
 
-          URLS = [
-              ("Varvaglione Papale Primitivo di Manduria",  "https://www.vivino.com/en/varvaglione-papale-primitivo-di-manduria-primitivo-di-manduria/w/1506422"),
-              ("Chateau de Saint Cosme Les Deux Albion",    "https://www.vivino.com/en/chateau-de-saint-cosme-les-deux-albion-principaute-d-orange/w/35424"),
-              ("Gaston Burtin Extra Brut Champagne",        "https://www.vivino.com/en/gaston-burtin-extra-brut-champagne/w/12489584"),
-              ("La Sala Chianti Classico",                  "https://www.vivino.com/IT/en/it-la-sala-chianti-classico/w/2140869"),
-              ("Prototype Cabernet Sauvignon",              "https://www.vivino.com/en/prototype-cabernet-sauvignon/w/5733636"),
-              ("Prototype Zinfandel",                       "https://www.vivino.com/en/prototype-zinfandel/w/6172116"),
-              ("Prototype Chardonnay",                      "https://www.vivino.com/en/prototype-chardonnay/w/7553744"),
-              ("Mahi Sauvignon Blanc",                      "https://www.vivino.com/en/mahi-sauvignon-blanc/w/1112088"),
-              ("Mahi Pinot Noir",                           "https://www.vivino.com/en/mahi-pinot-noir/w/1112105"),
-              ("Terramater Magis Carmenere",                "https://www.vivino.com/en/terramater-magis-limited-reserve-carmenere/w/9597776"),
-              ("Terramater Magis Cabernet Sauvignon",       "https://www.vivino.com/en/terramater-magis-limited-reserve-cabernet-sauvignon/w/7247216"),
-              ("Vinum Cellars Cabernet Sauvignon",          "https://www.vivino.com/en/us-vinum-cellars-us-cabernet-sauvignon/w/90074"),
-              ("De Montfaucon Baron Louis Lirac",           "https://www.vivino.com/en/de-montfaucon-baron-louis-lirac-cotes-du-rhone/w/1117640"),
-              ("19 Crimes Cabernet Sauvignon",              "https://www.vivino.com/en/nineteen-crimes-cabernet-sauvignon-victoria-red-wine-v/w/3736213"),
-              ("Bread and Butter Chardonnay",               "https://www.vivino.com/en/bread-and-butter-chardonnay/w/1755251"),
-              ("Apothic Red",                               "https://www.vivino.com/en/apothic-red-winemaker-s-blend/w/1130327"),
-              ("Delaunois d Fils La Royale Champagne",      "https://www.vivino.com/en/delaunois-d-fils-la-royale-champagne-premier-cru/w/3952842"),
+          WINES = [
+              ("Varvaglione Papale Primitivo di Manduria",  "https://www.vivino.com/en/varvaglione-papale-primitivo-di-manduria-primitivo-di-manduria/w/1506422",  False),
+              ("Chateau de Saint Cosme Les Deux Albion",    "https://www.vivino.com/en/chateau-de-saint-cosme-les-deux-albion-principaute-d-orange/w/35424",        False),
+              ("Gaston Burtin Extra Brut Champagne",        "https://www.vivino.com/en/gaston-burtin-extra-brut-champagne/w/12489584",                               True),
+              ("La Sala Chianti Classico",                  "https://www.vivino.com/IT/en/it-la-sala-chianti-classico/w/2140869",                                   False),
+              ("Prototype Cabernet Sauvignon",              "https://www.vivino.com/en/prototype-cabernet-sauvignon/w/5733636",                                     False),
+              ("Prototype Zinfandel",                       "https://www.vivino.com/en/prototype-zinfandel/w/6172116",                                              False),
+              ("Prototype Chardonnay",                      "https://www.vivino.com/en/prototype-chardonnay/w/7553744",                                             False),
+              ("Mahi Sauvignon Blanc",                      "https://www.vivino.com/en/mahi-sauvignon-blanc/w/1112088",                                             False),
+              ("Mahi Pinot Noir",                           "https://www.vivino.com/en/mahi-pinot-noir/w/1112105",                                                  False),
+              ("Terramater Magis Carmenere",                "https://www.vivino.com/en/terramater-magis-limited-reserve-carmenere/w/9597776",                       False),
+              ("Terramater Magis Cabernet Sauvignon",       "https://www.vivino.com/en/terramater-magis-limited-reserve-cabernet-sauvignon/w/7247216",              False),
+              ("Vinum Cellars Cabernet Sauvignon",          "https://www.vivino.com/en/us-vinum-cellars-us-cabernet-sauvignon/w/90074",                             False),
+              ("De Montfaucon Baron Louis Lirac",           "https://www.vivino.com/en/de-montfaucon-baron-louis-lirac-cotes-du-rhone/w/1117640",                   False),
+              ("19 Crimes Cabernet Sauvignon",              "https://www.vivino.com/en/nineteen-crimes-cabernet-sauvignon-victoria-red-wine-v/w/3736213",            False),
+              ("Bread and Butter Chardonnay",               "https://www.vivino.com/en/bread-and-butter-chardonnay/w/1755251",                                      False),
+              ("Apothic Red",                               "https://www.vivino.com/en/apothic-red-winemaker-s-blend/w/1130327",                                    False),
+              ("Delaunois d Fils La Royale Champagne",      "https://www.vivino.com/en/delaunois-d-fils-la-royale-champagne-premier-cru/w/3952842",                 True),
           ]
 
-          def left_to_score(pct):
-              return round(1 + (pct / 100) * 4, 2)
+          LABEL_MAP = {
+              "light": "body",   "bold": "body",
+              "smooth": "tannin", "tannic": "tannin",
+              "dry": "sweetness", "sweet": "sweetness",
+              "soft": "acidity",  "acidic": "acidity",
+              "gentle": "fizziness", "fizzy": "fizziness",
+          }
 
-          # --- Chrome options with anti-detection ---
+          def left_to_score(pct):
+              return round(1 + (pct / 100.0) * 4, 2)
+
+          def parse_sliders_from_html(src):
+              """Parse slider values from HTML rows using label text."""
+              sliders = {}
+              # Find all tasteCharacteristic rows
+              # Pattern: left-label ... left:XX% ... right-label
+              row_pattern = re.compile(
+                  r'class="[^"]*tasteCharacteristic[^"]*".*?'
+                  r'class="[^"]*property[^"]*">([^<]+)</div>.*?'
+                  r'left:\s*([\d.]+)%.*?'
+                  r'class="[^"]*property[^"]*">([^<]+)</div>',
+                  re.S
+              )
+              for m in row_pattern.finditer(src):
+                  left_label  = m.group(1).strip().lower()
+                  left_pct    = float(m.group(2))
+                  right_label = m.group(3).strip().lower()
+                  key = LABEL_MAP.get(left_label) or LABEL_MAP.get(right_label)
+                  if key and key not in sliders:
+                      sliders[key] = left_to_score(left_pct)
+              return sliders
+
+          def parse_sliders_from_json(src):
+              """Parse baseline_structure JSON from page source as fallback."""
+              sliders = {}
+              m = re.search(r'"baseline_structure"\s*:\s*(\{[^}]+\})', src)
+              if not m:
+                  return sliders
+              try:
+                  bs = json.loads(m.group(1))
+              except:
+                  return sliders
+              # intensity → body; tannin → tannin; sweetness → sweetness;
+              # acidity → acidity; fizziness → fizziness
+              mapping = {
+                  "intensity": "body",
+                  "tannin":    "tannin",
+                  "sweetness": "sweetness",
+                  "acidity":   "acidity",
+                  "fizziness": "fizziness",
+              }
+              for json_key, slider_key in mapping.items():
+                  val = bs.get(json_key)
+                  if val is not None:
+                      sliders[slider_key] = round(float(val), 2)
+              return sliders
+
+          # ------------------------------------------------------------------
+          # Build Chrome driver
+          # ------------------------------------------------------------------
           opts = Options()
           opts.add_argument("--headless=new")
           opts.add_argument("--no-sandbox")
@@ -71,7 +127,6 @@ jobs:
           opts.add_argument("--disable-gpu")
           opts.add_argument("--window-size=1920,1080")
           opts.add_argument("--disable-blink-features=AutomationControlled")
-          opts.add_argument("--disable-extensions")
           opts.add_argument("--lang=en-US,en")
           opts.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
           opts.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -81,76 +136,139 @@ jobs:
               service=Service(ChromeDriverManager().install()),
               options=opts,
           )
-          # Hide webdriver flag
           driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-              "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+              "source": "Object.defineProperty(navigator,'webdriver',{get:()=>undefined})"
           })
 
-          # ---- DEBUG: save HTML of first wine page to file ----
-          debug_url = URLS[15][1]  # Apothic Red - popular wine, less likely blocked
-          print(f"DEBUG: loading {debug_url}")
-          driver.get(debug_url)
-          time.sleep(5)
-          driver.execute_script("window.scrollTo(0, 800)")
-          time.sleep(2)
-          src = driver.page_source
-          print(f"DEBUG: page source length = {len(src)}")
-          print(f"DEBUG: page title = {driver.title[:100]}")
+          # ------------------------------------------------------------------
+          # Scrape each wine
+          # ------------------------------------------------------------------
+          results = []
+          for idx, (expected_name, url, is_sparkling) in enumerate(WINES, 1):
+              print(f"\n[{idx:02d}/17] {expected_name}")
+              try:
+                  driver.get(url)
+                  time.sleep(3)
 
-          # Save relevant HTML snippets to debug file
-          debug_lines = []
-          debug_lines.append(f"URL: {debug_url}")
-          debug_lines.append(f"Title: {driver.title}")
-          debug_lines.append(f"Source length: {len(src)}")
-          debug_lines.append("")
+                  # Scroll to trigger lazy loading of taste structure
+                  for pos in [400, 800, 1200]:
+                      driver.execute_script(f"window.scrollTo(0, {pos})")
+                      time.sleep(0.5)
+                  time.sleep(1)
 
-          # All elements with style containing left or width %
-          elems = driver.find_elements(By.XPATH, '//*[contains(@style,"left:") or contains(@style,"width:")]')
-          debug_lines.append(f"=== Elements with left/width style: {len(elems)} ===")
-          for el in elems[:30]:
-              tag = el.tag_name
-              cls = el.get_attribute("class") or ""
-              style = el.get_attribute("style") or ""
-              testid = el.get_attribute("data-testid") or ""
-              if any(x in style for x in ['left:', 'width:']):
-                  debug_lines.append(f"  <{tag} class='{cls[:60]}' data-testid='{testid}' style='{style[:80]}'>")
+                  src = driver.page_source
 
-          debug_lines.append("")
+                  # Check for Cloudflare block
+                  if "Just a moment" in src or "cf-browser-verification" in src:
+                      print("  BLOCKED by Cloudflare — retrying after 8s")
+                      time.sleep(8)
+                      driver.get(url)
+                      time.sleep(5)
+                      src = driver.page_source
 
-          # Find taste-related keywords in HTML
-          for kw in ["tasteStructure", "taste-structure", "TasteStructure", "indicator", "slider", "progressBar",
-                     "left:", "tannin", "acidity", "sweetness", "body", "fizziness"]:
-              positions = [m.start() for m in re.finditer(re.escape(kw), src, re.I)]
-              if positions:
-                  debug_lines.append(f"=== '{kw}' found {len(positions)} times, first at {positions[0]} ===")
-                  p = positions[0]
-                  debug_lines.append(src[max(0,p-100):p+300])
-                  debug_lines.append("")
+                  # Wine name from page
+                  try:
+                      wine_name = driver.find_element(By.CSS_SELECTOR,
+                          "h1[class*='wineName'], h1[class*='wine'], h1").text.strip()
+                  except:
+                      wine_name = expected_name
 
-          with open("debug_vivino.txt", "w", encoding="utf-8") as f:
-              f.write("\n".join(debug_lines))
-          print("DEBUG file saved")
+                  # Extract sliders: HTML method first, JSON fallback
+                  sliders = parse_sliders_from_html(src)
+                  if not sliders:
+                      sliders = parse_sliders_from_json(src)
+                      if sliders:
+                          print("  [used JSON baseline_structure fallback]")
 
-          # Also try to find taste data via JSON in page source
-          # Look for __NEXT_DATA__ or similar
-          json_matches = re.findall(r'<script[^>]*>(.*?)</script>', src, re.S)
-          for i, j in enumerate(json_matches):
-              if any(k in j.lower() for k in ['tannin', 'acidity', 'taste', 'slider']):
-                  with open(f"debug_script_{i}.txt", "w", encoding="utf-8") as f:
-                      f.write(j[:5000])
-                  print(f"  Saved debug_script_{i}.txt (taste keyword found)")
+                  # Review count
+                  review_count = ""
+                  body_text = driver.find_element(By.TAG_NAME, "body").text
+                  m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
+                  if m:
+                      review_count = m.group(1).replace(",", "")
+                  else:
+                      m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
+                      if m:
+                          review_count = m.group(1).replace(",", "")
+
+                  # Aroma mentions
+                  aroma_list = re.findall(
+                      r'(\d[\d,]*)\s+mentions?\s+of\s+([^\n,\.]{3,40})',
+                      body_text, re.I
+                  )
+                  aroma_str = " | ".join(
+                      f"{c} mentions of {d.strip()}" for c, d in aroma_list[:5]
+                  )
+
+                  row = {
+                      "와인이름":  wine_name,
+                      "Body":      sliders.get("body"),
+                      "Tannin":    sliders.get("tannin"),
+                      "Sweetness": sliders.get("sweetness"),
+                      "Acidity":   sliders.get("acidity"),
+                      "Fizziness": sliders.get("fizziness") if is_sparkling else None,
+                      "리뷰수":    review_count,
+                      "아로마멘션": aroma_str,
+                  }
+                  results.append(row)
+                  print(f"  Body={row['Body']}  Tannin={row['Tannin']}  "
+                        f"Sweet={row['Sweetness']}  Acid={row['Acidity']}  "
+                        f"Fizz={row['Fizziness']}  Reviews={row['리뷰수']}")
+
+              except Exception as e:
+                  print(f"  ERROR: {e}")
+                  results.append({
+                      "와인이름": expected_name, "Body": None, "Tannin": None,
+                      "Sweetness": None, "Acidity": None, "Fizziness": None,
+                      "리뷰수": "", "아로마멘션": f"ERROR: {e}",
+                  })
+
+              time.sleep(2)
 
           driver.quit()
-          print("DEBUG done - check debug_vivino.txt in the repository")
+
+          # ------------------------------------------------------------------
+          # Save CSV
+          # ------------------------------------------------------------------
+          fieldnames = ["와인이름","Body","Tannin","Sweetness","Acidity","Fizziness","리뷰수","아로마멘션"]
+          with open("vivino_sliders.csv", "w", newline="", encoding="utf-8-sig") as f:
+              writer = csv.DictWriter(f, fieldnames=fieldnames)
+              writer.writeheader()
+              writer.writerows(results)
+
+          # ------------------------------------------------------------------
+          # Print table
+          # ------------------------------------------------------------------
+          print("\n\n" + "="*110)
+          print(f"{'와인이름':<40} {'Body':>5} {'Tannin':>7} {'Sweet':>7} {'Acid':>6} {'Fizz':>6} {'Reviews':>8}  아로마멘션")
+          print("="*110)
+          for r in results:
+              def v(x): return f"{x:.2f}" if x is not None else "  -  "
+              print(f"{str(r['와인이름'])[:40]:<40} {v(r['Body']):>5} {v(r['Tannin']):>7} "
+                    f"{v(r['Sweetness']):>7} {v(r['Acidity']):>6} {v(r['Fizziness']):>6} "
+                    f"{str(r['리뷰수']):>8}  {str(r['아로마멘션'])[:60]}")
+          print("="*110)
+
+          print("\n\nCSV:\n")
+          with open("vivino_sliders.csv", encoding="utf-8-sig") as f:
+              print(f.read())
           PYEOF
 
-      - name: Commit debug files
+      - name: Upload CSV result
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vivino_sliders
+          path: vivino_sliders.csv
+
+      - name: Commit CSV to repo
+        if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/tmuchal/README.git
-          git add debug_vivino.txt debug_script_*.txt 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "Add Vivino debug HTML output [skip ci]"
+          git add vivino_sliders.csv
+          git diff --staged --quiet || git commit -m "Add Vivino slider scrape results [skip ci]"
           git push origin HEAD:claude/vivino-wine-scraper-6idX4
