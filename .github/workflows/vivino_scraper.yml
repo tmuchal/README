@@ -164,6 +164,34 @@ jobs:
                   except:
                       wine_name = name
 
+                  # Debug: dump taste-related HTML for first wine only
+                  if len(results) == 0:
+                      src = driver.page_source
+                      # Find sections with taste/structure/slider keywords
+                      import re as _re
+                      # Print all style attributes containing left or width
+                      style_hits = _re.findall(r'<[^>]+style="[^"]*(?:left|width)\s*:\s*[\d.]+%[^"]*"[^>]*>', src)
+                      print(f"\n=== DEBUG: style left/width elements ({len(style_hits)} found) ===")
+                      for h in style_hits[:20]:
+                          print(h[:200])
+                      # Find tasteStructure section
+                      taste_idx = src.lower().find('tastestructure')
+                      if taste_idx == -1:
+                          taste_idx = src.lower().find('taste-structure')
+                      if taste_idx == -1:
+                          taste_idx = src.lower().find('taste_structure')
+                      if taste_idx != -1:
+                          print(f"\n=== DEBUG: tasteStructure HTML (500 chars) ===")
+                          print(src[max(0, taste_idx-100):taste_idx+500])
+                      else:
+                          print("=== DEBUG: no tasteStructure found in page source ===")
+                          # Print first occurrence of 'body' near slider
+                          for kw in ['body', 'tannin', 'bold', 'tannic']:
+                              idx = src.lower().find(kw)
+                              if idx != -1:
+                                  print(f"keyword '{kw}' at index {idx}: ...{src[max(0,idx-50):idx+200]}...")
+                                  break
+
                   # Get sliders
                   sliders = get_sliders(driver)
 
