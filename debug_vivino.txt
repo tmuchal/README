@@ -1,0 +1,90 @@
+URL: https://www.vivino.com/en/apothic-red-winemaker-s-blend/w/1130327
+Title: Apothic Red (Winemaker's Blend) | Vivino English
+Source length: 1912438
+
+=== Elements with left/width style: 79 ===
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.testing.viv'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.testing.viv'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.testing.viv'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.testing.viv'>
+  <i class='rating_icon__KDdqj rating_icon0__Gf1yx' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.testing.viv'>
+  <div class='' data-testid='' style='border: 0pt none; width: 728px; height: 0px;'>
+  <textarea class='vivino-mui-1t97fwq-root' data-testid='' style='visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px;'>
+  <textarea class='vivino-mui-1t97fwq-root' data-testid='' style='visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px;'>
+  <textarea class='vivino-mui-1t97fwq-root' data-testid='' style='visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px;'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.vivino.com/'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.vivino.com/'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.vivino.com/'>
+  <i class='rating_icon__KDdqj' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.vivino.com/'>
+  <i class='rating_icon__KDdqj rating_icon0__Gf1yx' data-testid='' style='height: 16px; width: 16px; background-image: url("https://web-common.vivino.com/'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <div class='RatingsFilter__inner--1KrGS' data-testid='' style='width: 13%;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <div class='RatingsFilter__inner--1KrGS' data-testid='' style='width: 44%;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+  <div class='RatingsFilter__inner--1KrGS' data-testid='' style='width: 32%;'>
+  <img class='rating-module__icon--3UglJ' data-testid='' style='height: 16px; width: 16px;'>
+
+=== 'tasteStructure' found 22 times, first at 1140246 ===
+iv><div class="row"><div class="col mobile-column-6 tablet-column-8 desktop-column-8"><table class="tasteStructure__tasteStructure--3YUrG"><tbody><tr class="tasteStructure__tasteCharacteristic--jLtsE"><td><div class="tasteStructure__property--CLNl_">Light</div></td><td class="tasteStructure__progressBar--HGIje"><div class="indicatorBar__meter--2t_YL tasteStructure__progressBar--HGIje"><span class=
+
+=== 'TasteStructure' found 22 times, first at 1140246 ===
+iv><div class="row"><div class="col mobile-column-6 tablet-column-8 desktop-column-8"><table class="tasteStructure__tasteStructure--3YUrG"><tbody><tr class="tasteStructure__tasteCharacteristic--jLtsE"><td><div class="tasteStructure__property--CLNl_">Light</div></td><td class="tasteStructure__progressBar--HGIje"><div class="indicatorBar__meter--2t_YL tasteStructure__progressBar--HGIje"><span class=
+
+=== 'indicator' found 8 times, first at 1140471 ===
+ucture__property--CLNl_">Light</div></td><td class="tasteStructure__progressBar--HGIje"><div class="indicatorBar__meter--2t_YL tasteStructure__progressBar--HGIje"><span class="indicatorBar__progress--3aXLX" style="width: 15%; left: 85%;"></span></div></td><td><div class="tasteStructure__property--CLNl_">Bold</div></td></tr><tr class="tasteStructure__tasteCharacteristic--jLtsE"><td><div class="tast
+
+=== 'slider' found 179 times, first at 168351 ===
+ 0 8px}@media(min-width:768px){h2{font-size:28px;line-height:40px;font-weight:600;margin:0 0 24px}}.slider__slider--28TGJ{position:relative}.slider__slider--28TGJ.slider__grid--tKls1{max-width:100%;width:100%}.slider__slider--28TGJ.slider__showControls--3JyG7 .slider__viewPort--30MrB{overflow-x:hidden}.slider__slider--28TGJ.slider__showControls--3JyG7 .slider__left--RTeLh{left:0;transform:translat
+
+=== 'progressBar' found 8 times, first at 1140439 ===
+-jLtsE"><td><div class="tasteStructure__property--CLNl_">Light</div></td><td class="tasteStructure__progressBar--HGIje"><div class="indicatorBar__meter--2t_YL tasteStructure__progressBar--HGIje"><span class="indicatorBar__progress--3aXLX" style="width: 15%; left: 85%;"></span></div></td><td><div class="tasteStructure__property--CLNl_">Bold</div></td></tr><tr class="tasteStructure__tasteCharacteris
+
+=== 'left:' found 346 times, first at 31391 ===
+}.burgerMenuLanguage_menuLink__MGJoN .burgerMenuLanguage_chosenLanguage__XQ7m-{color:#a8a5a3;margin-left:4px}.burgerMenuLanguage_labelContainer__EiBqy{cursor:pointer;display:flex;justify-content:space-between;align-items:center}.burgerMenuLanguage_labelContainer__EiBqy:hover .burgerMenuLanguage_container__k3Ebe{display:flex}.burgerMenuLanguage_languageItemsContainer__2DSJH{background-color:#fff;pa
+
+=== 'tannin' found 16 times, first at 767976 ===
+sk":"1\u003c","baseline_structure":{"acidity":4.0,"fizziness":null,"intensity":5.0,"sweetness":1.0,"tannin":4.0}},"has_valid_ratings":true},"description":"","wine_critic_reviews":[],"awards":[],"ratings_distribution":{"1":4681,"2":10115,"3":48268,"4":66224,"5":19721},"ranking":{"country":{"description":"Rank within United States","total":1309451,"rank":116537},"region":{"description":"Rank within 
+
+=== 'acidity' found 64 times, first at 334284 ===
+s_wine":"Do you know an online merchant selling this wine?"},"wine_summary":{"yes":"Yes","no":"No","acidity":"Acidity","acidity_level":"%{level} Acidity","alcohol":"Alcohol content","certification":"Certification","dietary_information":"Dietary information","closure":"Bottle closure","kosher":"Kosher","facts":"Facts about the wine","winery":"Winery","grapes":"Grapes","region":"Region","regional_st
+
+=== 'sweetness' found 31 times, first at 334771 ===
+value":"pH value","vegan_friendly":"Vegan friendly","mevushal":"Mevushal","winemaker":"Wine maker","sweetness":"Sweetness","bottles_produces":"Bottles produces","non_alcoholic":"Non alcoholic","ean":"International Article Number","best_enjoyed_between":"Best enjoyed between","best_enjoyed_temperature":"Best enjoyed temperature","decanting_time":"Decanting time","ageing":"Ageing methods","allergens
+
+=== 'body' found 80 times, first at 283713 ===
+1 {
+    margin-right: 1129.3333333333px;
+  }
+}
+
+/* line 11, app/assets/stylesheets/critical.scss */
+body {
+  background: rgba(1, 1, 1, 0);
+  margin: 0;
+  padding: 0;
+  font-family: 'GraphikWeb', 'Verdana', sans-serif;
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  font-size: 13px;
+  /* 9 */
+  line-height: normal;
+  color: #1e1e1e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+
+=== 'fizziness' found 16 times, first at 767927 ===
+:8817,"aggregated_wines_count":15137},"vintage_mask":"1\u003c","baseline_structure":{"acidity":4.0,"fizziness":null,"intensity":5.0,"sweetness":1.0,"tannin":4.0}},"has_valid_ratings":true},"description":"","wine_critic_reviews":[],"awards":[],"ratings_distribution":{"1":4681,"2":10115,"3":48268,"4":66224,"5":19721},"ranking":{"country":{"description":"Rank within United States","total":1309451,"ra
