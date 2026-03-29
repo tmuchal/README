@@ -1,0 +1,245 @@
+name: Vivino Wine Scraper
+
+on:
+  push:
+    branches: [ "claude/vivino-wine-scraper-6idX4" ]
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install selenium==4.* webdriver-manager pandas
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
+      - name: Run Vivino scraper
+        run: |
+          python3 - <<'PYEOF'
+          import csv, re, time, json
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait
+          from selenium.webdriver.support import expected_conditions as EC
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          URLS = [
+              ("Varvaglione Papale Primitivo di Manduria", "https://www.vivino.com/en/varvaglione-papale-primitivo-di-manduria-primitivo-di-manduria/w/1506422"),
+              ("Chateau de Saint Cosme Les Deux Albion", "https://www.vivino.com/en/chateau-de-saint-cosme-les-deux-albion-principaute-d-orange/w/35424"),
+              ("Gaston Burtin Extra Brut Champagne", "https://www.vivino.com/en/gaston-burtin-extra-brut-champagne/w/12489584"),
+              ("La Sala Chianti Classico", "https://www.vivino.com/IT/en/it-la-sala-chianti-classico/w/2140869"),
+              ("Prototype Cabernet Sauvignon", "https://www.vivino.com/en/prototype-cabernet-sauvignon/w/5733636"),
+              ("Prototype Zinfandel", "https://www.vivino.com/en/prototype-zinfandel/w/6172116"),
+              ("Prototype Chardonnay", "https://www.vivino.com/en/prototype-chardonnay/w/7553744"),
+              ("Mahi Sauvignon Blanc", "https://www.vivino.com/en/mahi-sauvignon-blanc/w/1112088"),
+              ("Mahi Pinot Noir", "https://www.vivino.com/en/mahi-pinot-noir/w/1112105"),
+              ("Terramater Magis Carmenere", "https://www.vivino.com/en/terramater-magis-limited-reserve-carmenere/w/9597776"),
+              ("Terramater Magis Cabernet Sauvignon", "https://www.vivino.com/en/terramater-magis-limited-reserve-cabernet-sauvignon/w/7247216"),
+              ("Vinum Cellars Cabernet Sauvignon", "https://www.vivino.com/en/us-vinum-cellars-us-cabernet-sauvignon/w/90074"),
+              ("De Montfaucon Baron Louis Lirac", "https://www.vivino.com/en/de-montfaucon-baron-louis-lirac-cotes-du-rhone/w/1117640"),
+              ("19 Crimes Cabernet Sauvignon", "https://www.vivino.com/en/nineteen-crimes-cabernet-sauvignon-victoria-red-wine-v/w/3736213"),
+              ("Bread and Butter Chardonnay", "https://www.vivino.com/en/bread-and-butter-chardonnay/w/1755251"),
+              ("Apothic Red", "https://www.vivino.com/en/apothic-red-winemaker-s-blend/w/1130327"),
+              ("Delaunois d Fils La Royale Champagne", "https://www.vivino.com/en/delaunois-d-fils-la-royale-champagne-premier-cru/w/3952842"),
+          ]
+
+          def left_to_score(left_pct):
+              return round(1 + (left_pct / 100) * 4, 2)
+
+          def get_sliders(driver):
+              sliders = {}
+              labels = ["body", "tannin", "sweetness", "acidity", "fizziness"]
+
+              # Try CSS: tasteStructure progressBar spans with style
+              try:
+                  bars = driver.find_elements(By.CSS_SELECTOR,
+                      "div[class*='tasteStructure'] span[style*='width'], "
+                      "div[class*='tasteStructure'] div[style*='left'], "
+                      "[class*='indicator'][style*='left']")
+                  print(f"  Found {len(bars)} slider bars")
+                  for b in bars:
+                      print(f"    style: {b.get_attribute('style')[:60]}")
+              except Exception as e:
+                  print(f"  Slider search error: {e}")
+
+              # Main approach: find all indicator/progressBar elements
+              # Try data-testid approach first
+              testid_map = {
+                  "body": ["body"],
+                  "tannin": ["tannin"],
+                  "sweetness": ["sweetness", "sweet"],
+                  "acidity": ["acidity"],
+                  "fizziness": ["fizziness", "fizzy"],
+              }
+
+              for key, ids in testid_map.items():
+                  for tid in ids:
+                      try:
+                          container = driver.find_element(By.XPATH,
+                              f'//*[contains(@data-testid, "{tid}") or contains(@class, "{tid}")]')
+                          indicator = container.find_element(By.XPATH,
+                              './/*[contains(@style,"left:") or contains(@style,"left :") or contains(@style,"width:")]')
+                          style = indicator.get_attribute("style") or ""
+                          m = re.search(r'(?:left|width)\s*:\s*([\d.]+)%', style)
+                          if m:
+                              sliders[key] = left_to_score(float(m.group(1)))
+                              break
+                      except:
+                          continue
+
+              # Fallback: try page source JSON
+              if not sliders:
+                  src = driver.page_source
+                  # Look for taste structure data in JSON
+                  m = re.search(r'"taste":\s*\{([^}]+)\}', src)
+                  if m:
+                      taste_str = "{" + m.group(1) + "}"
+                      try:
+                          taste = json.loads(taste_str)
+                          if "body" in taste or "acidity" in taste:
+                              sliders = {k: taste.get(k) for k in labels}
+                      except:
+                          pass
+
+              # Another fallback: look for style left% in page source
+              if not sliders:
+                  src = driver.page_source
+                  left_vals = re.findall(r'left:\s*([\d.]+)%', src)
+                  print(f"  Found left% values in source: {left_vals}")
+
+              return sliders
+
+          opts = Options()
+          opts.add_argument("--headless=new")
+          opts.add_argument("--no-sandbox")
+          opts.add_argument("--disable-dev-shm-usage")
+          opts.add_argument("--disable-gpu")
+          opts.add_argument("--window-size=1920,1080")
+          opts.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+
+          driver = webdriver.Chrome(
+              service=Service(ChromeDriverManager().install()),
+              options=opts
+          )
+
+          results = []
+          for name, url in URLS:
+              print(f"\n[{len(results)+1}/17] {name}")
+              try:
+                  driver.get(url)
+                  time.sleep(3)
+
+                  # Scroll to load lazy content
+                  driver.execute_script("window.scrollTo(0, 600)")
+                  time.sleep(1)
+                  driver.execute_script("window.scrollTo(0, 1200)")
+                  time.sleep(1)
+
+                  # Get wine name from page
+                  try:
+                      wine_name = driver.find_element(By.CSS_SELECTOR,
+                          "h1, [class*='wineName'], [class*='wine-name']").text.strip()
+                      if not wine_name:
+                          wine_name = name
+                  except:
+                      wine_name = name
+
+                  # Get sliders
+                  sliders = get_sliders(driver)
+
+                  # Get review count
+                  review_count = ""
+                  try:
+                      body_text = driver.find_element(By.TAG_NAME, "body").text
+                      m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
+                      if m:
+                          review_count = m.group(1).replace(",", "")
+                      else:
+                          m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
+                          if m:
+                              review_count = m.group(1).replace(",", "")
+                  except:
+                      pass
+
+                  # Get aroma mentions
+                  aroma_mentions = []
+                  try:
+                      body_text = driver.find_element(By.TAG_NAME, "body").text
+                      matches = re.findall(r'(\d[\d,]*)\s+mentions?\s+of\s+([^\n,\.]{3,40})', body_text, re.I)
+                      aroma_mentions = [f"{cnt} mentions of {desc.strip()}" for cnt, desc in matches[:5]]
+                  except:
+                      pass
+
+                  row = {
+                      "와인이름": wine_name,
+                      "Body": sliders.get("body"),
+                      "Tannin": sliders.get("tannin"),
+                      "Sweetness": sliders.get("sweetness"),
+                      "Acidity": sliders.get("acidity"),
+                      "Fizziness": sliders.get("fizziness"),
+                      "리뷰수": review_count,
+                      "아로마멘션": " | ".join(aroma_mentions),
+                  }
+                  results.append(row)
+                  print(f"  => Body={row['Body']} Tannin={row['Tannin']} Sweet={row['Sweetness']} Acid={row['Acidity']} Reviews={row['리뷰수']}")
+
+              except Exception as e:
+                  print(f"  ERROR: {e}")
+                  results.append({
+                      "와인이름": name, "Body": None, "Tannin": None,
+                      "Sweetness": None, "Acidity": None, "Fizziness": None,
+                      "리뷰수": "", "아로마멘션": f"ERROR: {e}"
+                  })
+
+              time.sleep(2)
+
+          driver.quit()
+
+          # Save CSV
+          fieldnames = ["와인이름", "Body", "Tannin", "Sweetness", "Acidity", "Fizziness", "리뷰수", "아로마멘션"]
+          with open("vivino_sliders.csv", "w", newline="", encoding="utf-8-sig") as f:
+              writer = csv.DictWriter(f, fieldnames=fieldnames)
+              writer.writeheader()
+              writer.writerows(results)
+
+          print("\n\n=== FINAL RESULTS ===")
+          for r in results:
+              print(f"{r['와인이름'][:35]:<35} | Body={str(r['Body']):<5} | Tannin={str(r['Tannin']):<5} | Sweet={str(r['Sweetness']):<5} | Acid={str(r['Acidity']):<5} | Fizz={str(r['Fizziness']):<5} | Reviews={r['리뷰수']}")
+
+          print("\n\nCSV CONTENT:")
+          with open("vivino_sliders.csv", "r", encoding="utf-8-sig") as f:
+              print(f.read())
+          PYEOF
+
+      - name: Upload CSV result
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vivino_sliders
+          path: vivino_sliders.csv
+
+      - name: Commit CSV to repo
+        if: success()
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add vivino_sliders.csv || true
+          git diff --staged --quiet || git commit -m "Add Vivino slider scrape results"
+          git push origin claude/vivino-wine-scraper-6idX4
