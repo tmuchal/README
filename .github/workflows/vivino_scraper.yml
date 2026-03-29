@@ -5,6 +5,9 @@ on:
     branches: [ "claude/vivino-wine-scraper-6idX4" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -236,10 +239,13 @@ jobs:
           path: vivino_sliders.csv
 
       - name: Commit CSV to repo
-        if: success()
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/tmuchal/README.git
           git add vivino_sliders.csv || true
-          git diff --staged --quiet || git commit -m "Add Vivino slider scrape results"
-          git push origin claude/vivino-wine-scraper-6idX4
+          git diff --staged --quiet || git commit -m "Add Vivino slider scrape results [skip ci]"
+          git push origin HEAD:claude/vivino-wine-scraper-6idX4
