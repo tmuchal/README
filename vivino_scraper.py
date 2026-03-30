@@ -2,7 +2,8 @@
 Vivino Wine Slider Scraper
 - Selenium 4 + Chrome headless
 - 슬라이더 left: XX% → 1-5 점수 변환
-- 리뷰 수, 아로마 멘션 추출
+- 평점, 전체 평점 수(ratings), 슬라이더 리뷰 수(taste_reviews) 추출
+- 아로마 멘션 추출
 - 리다이렉트 URL 추적
 - vivino_sliders.csv 저장
 """
@@ -76,9 +77,9 @@ WINES = [
 
 # 종류별 슬라이더 레이블 집합
 SLIDER_LABELS = {
-    "red":      {"body", "tannin", "sweetness", "acidity"},
-    "white":    {"body", "sweetness", "acidity"},
-    "sparkling":{"body", "acidity", "fizziness"},
+    "red":       {"body", "tannin", "sweetness", "acidity"},
+    "white":     {"body", "sweetness", "acidity"},
+    "sparkling": {"body", "acidity", "fizziness"},
 }
 
 # HTML 레이블 텍스트 → 슬라이더 키 매핑
@@ -116,7 +117,6 @@ def build_driver() -> webdriver.Chrome:
     opts.add_experimental_option("excludeSwitches", ["enable-automation"])
     opts.add_experimental_option("useAutomationExtension", False)
 
-    # Selenium 4.6+ Service 자동 관리 (webdriver-manager fallback)
     try:
         driver = webdriver.Chrome(options=opts)
     except Exception:
@@ -133,11 +133,6 @@ def build_driver() -> webdriver.Chrome:
 def parse_sliders_html(src: str) -> dict:
     """
     HTML에서 tasteCharacteristic 행을 찾아 left: XX% 값 추출.
-    <tr class="...tasteCharacteristic...">
-      <td><div class="...property...">Light</div></td>
-      <td ...><... style="width: X%; left: Y%;"></td>
-      <td><div class="...property...">Bold</div></td>
-    </tr>
     """
     sliders = {}
     pattern = re.compile(
@@ -160,7 +155,6 @@ def parse_sliders_html(src: str) -> dict:
 def parse_sliders_json(src: str) -> dict:
     """
     페이지 내 JSON baseline_structure 에서 값 추출 (fallback).
-    {"intensity":X,"tannin":X,"sweetness":X,"acidity":X,"fizziness":X}
     """
     sliders = {}
     m = re.search(r'"baseline_structure"\s*:\s*(\{[^}]+\})', src)
@@ -224,41 +218,56 @@ def scrape_page(driver: webdriver.Chrome, name: str, url: str, wine_type: str) -
         sliders = parse_sliders_json(src)
         used_fallback = bool(sliders)
 
-    # 슬라이더가 아예 없으면 데이터 없음
     has_data = bool(sliders)
 
-    # 종류에 맞지 않는 키 제거 (e.g. white 와인의 tannin)
+    # 종류에 맞지 않는 키 제거
     for k in list(sliders.keys()):
         if k not in expected_keys:
             del sliders[k]
 
-    # 리뷰 수: 전체 평점 수 ("X ratings") 우선, fallback: "based on X user reviews"
-    review_count = ""
+    body_text = ""
     try:
         body_text = driver.find_element(By.TAG_NAME, "body").text
-        # 총 평점 수 (와인 점수 옆에 표시, 예: "24,962 ratings")
-        m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
-        if m:
-            review_count = m.group(1).replace(",", "")
-        else:
-            # fallback: 슬라이더 투표자 수 ("based on X user reviews")
-            m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
-            if m:
-                review_count = m.group(1).replace(",", "")
     except Exception:
         pass
 
-    # 아로마 멘션
+    # ── 평점 (예: "4.1") ──────────────────────────────────────────────────────
+    rating = ""
+    # JSON에서 먼저 시도
+    m = re.search(r'"average"\s*:\s*([\d.]+)', src)
+    if m:
+        try:
+            rating = str(round(float(m.group(1)), 1))
+        except ValueError:
+            pass
+    if not rating and body_text:
+        # 텍스트에서 "4.1" 형태의 점수 (1~5 사이 소수점 1자리)
+        m = re.search(r'\b([1-5]\.[0-9])\b', body_text)
+        if m:
+            rating = m.group(1)
+
+    # ── 전체 평점 수 ("XX ratings") ───────────────────────────────────────────
+    total_ratings = ""
+    if body_text:
+        m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
+        if m:
+            total_ratings = m.group(1).replace(",", "")
+
+    # ── 슬라이더 리뷰 수 ("based on XX user reviews") ─────────────────────────
+    taste_reviews = ""
+    if body_text:
+        m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
+        if m:
+            taste_reviews = m.group(1).replace(",", "")
+
+    # ── 아로마 멘션 ───────────────────────────────────────────────────────────
     aroma_list = []
-    try:
-        body_text = driver.find_element(By.TAG_NAME, "body").text
+    if body_text:
         matches = re.findall(
             r'(\d[\d,]*)\s+mentions?\s+of\s+([^\n,\.]{3,40})',
             body_text, re.I,
         )
         aroma_list = [f"{c} mentions of {d.strip()}" for c, d in matches[:5]]
-    except Exception:
-        pass
 
     note = ""
     if not has_data:
@@ -267,17 +276,19 @@ def scrape_page(driver: webdriver.Chrome, name: str, url: str, wine_type: str) -
         note = "JSON fallback"
 
     return {
-        "와인이름":   wine_name,
-        "Body":      sliders.get("body"),
-        "Tannin":    sliders.get("tannin"),
-        "Sweetness": sliders.get("sweetness"),
-        "Acidity":   sliders.get("acidity"),
-        "Fizziness": sliders.get("fizziness"),
-        "리뷰수":    review_count,
-        "아로마멘션": " | ".join(aroma_list),
-        "원래URL":   url,
-        "최종URL":   final_url,
-        "_note":     note,
+        "와인이름":         wine_name,
+        "Body":            sliders.get("body"),
+        "Tannin":          sliders.get("tannin"),
+        "Sweetness":       sliders.get("sweetness"),
+        "Acidity":         sliders.get("acidity"),
+        "Fizziness":       sliders.get("fizziness"),
+        "평점":            rating,
+        "전체평점수":       total_ratings,
+        "슬라이더리뷰수":   taste_reviews,
+        "아로마멘션":       " | ".join(aroma_list),
+        "원래URL":         url,
+        "최종URL":         final_url,
+        "_note":           note,
     }
 
 
@@ -287,7 +298,7 @@ def main():
     results = []
 
     for i, (name, url, wine_type) in enumerate(WINES, 1):
-        print(f"\n[{i:02d}/17] {name}  ({wine_type})")
+        print(f"\n[{i:02d}/{len(WINES):02d}] {name}  ({wine_type})")
         try:
             data = scrape_page(driver, name, url, wine_type)
             results.append(data)
@@ -298,7 +309,9 @@ def main():
             print(
                 f"  Body={v(data['Body'])}  Tannin={v(data['Tannin'])}  "
                 f"Sweet={v(data['Sweetness'])}  Acid={v(data['Acidity'])}  "
-                f"Fizz={v(data['Fizziness'])}  Reviews={data['리뷰수']}"
+                f"Fizz={v(data['Fizziness'])}  "
+                f"Rating={data['평점']}  Ratings={data['전체평점수']}  "
+                f"TasteReviews={data['슬라이더리뷰수']}"
                 f"{redirect}{note}"
             )
         except Exception as e:
@@ -306,7 +319,8 @@ def main():
             results.append({
                 "와인이름": name, "Body": None, "Tannin": None,
                 "Sweetness": None, "Acidity": None, "Fizziness": None,
-                "리뷰수": "", "아로마멘션": f"ERROR: {e}",
+                "평점": "", "전체평점수": "", "슬라이더리뷰수": "",
+                "아로마멘션": f"ERROR: {e}",
                 "원래URL": url, "최종URL": "", "_note": "에러 스킵",
             })
 
@@ -318,7 +332,7 @@ def main():
     # ── CSV 저장 ──────────────────────────────────────────────────────────────
     fieldnames = [
         "와인이름", "Body", "Tannin", "Sweetness", "Acidity", "Fizziness",
-        "리뷰수", "아로마멘션", "원래URL", "최종URL",
+        "평점", "전체평점수", "슬라이더리뷰수", "아로마멘션", "원래URL", "최종URL",
     ]
     with open(OUTPUT, "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
@@ -328,8 +342,8 @@ def main():
     print(f"\n✓ {OUTPUT} 저장 완료 ({len(results)}행)\n")
 
     # ── 터미널 테이블 출력 ────────────────────────────────────────────────────
-    COL_W = [42, 5, 6, 6, 6, 6, 7]
-    COLS  = ["와인이름", "Body", "Tannin", "Sweet", "Acid", "Fizz", "리뷰수"]
+    COL_W = [42, 5, 6, 6, 6, 6, 5, 8, 8]
+    COLS  = ["와인이름", "Body", "Tannin", "Sweet", "Acid", "Fizz", "평점", "Ratings", "TasteRev"]
     SEP   = "+" + "+".join("-" * (w + 2) for w in COL_W) + "+"
 
     def cell(val, w):
@@ -346,7 +360,8 @@ def main():
         vals = [
             r["와인이름"].replace("\n", " ")[:42],
             r["Body"], r["Tannin"], r["Sweetness"],
-            r["Acidity"], r["Fizziness"], r["리뷰수"],
+            r["Acidity"], r["Fizziness"],
+            r["평점"], r["전체평점수"], r["슬라이더리뷰수"],
         ]
         print("|" + "|".join(cell(v, w) for v, w in zip(vals, COL_W)) + "|")
     print(SEP)
