@@ -232,16 +232,17 @@ def scrape_page(driver: webdriver.Chrome, name: str, url: str, wine_type: str) -
         if k not in expected_keys:
             del sliders[k]
 
-    # 리뷰 수: "based on X user reviews"
+    # 리뷰 수: 전체 평점 수 ("X ratings") 우선, fallback: "based on X user reviews"
     review_count = ""
     try:
         body_text = driver.find_element(By.TAG_NAME, "body").text
-        m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
+        # 총 평점 수 (와인 점수 옆에 표시, 예: "24,962 ratings")
+        m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
         if m:
             review_count = m.group(1).replace(",", "")
         else:
-            # fallback: "X ratings"
-            m = re.search(r'([\d,]+)\s+ratings?', body_text, re.I)
+            # fallback: 슬라이더 투표자 수 ("based on X user reviews")
+            m = re.search(r'based on ([\d,]+)\s+user reviews?', body_text, re.I)
             if m:
                 review_count = m.group(1).replace(",", "")
     except Exception:
