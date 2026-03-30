@@ -27,17 +27,22 @@ jobs:
           sudo apt-get install -y -q google-chrome-stable
           pip install -q "selenium>=4.6" webdriver-manager
 
-      - name: Run Vivino scraper
+      - name: Run Vivino scraper (sliders 17)
         run: python3 vivino_scraper.py
 
-      - name: Upload CSV
+      - name: Run Vivino taste data scraper (18 wines)
+        run: python3 vivino_taste_data.py
+
+      - name: Upload CSVs
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: vivino_sliders
-          path: vivino_sliders.csv
+          name: vivino_csv
+          path: |
+            vivino_sliders.csv
+            vivino_taste_data.csv
 
-      - name: Commit CSV
+      - name: Commit CSVs
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,6 +50,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/tmuchal/README.git
-          git add vivino_sliders.csv
-          git diff --staged --quiet || git commit -m "scrape: update vivino_sliders.csv [skip ci]"
+          git add vivino_sliders.csv vivino_taste_data.csv
+          git diff --staged --quiet || git commit -m "scrape: update vivino CSVs [skip ci]"
           git push origin HEAD:claude/vivino-wine-scraper-6idX4
