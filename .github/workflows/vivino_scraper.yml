@@ -42,12 +42,12 @@ jobs:
 
           WINES = [
               ("Varvaglione Papale Primitivo di Manduria",  "https://www.vivino.com/en/varvaglione-papale-primitivo-di-manduria-primitivo-di-manduria/w/1506422",  False),
-              ("Chateau de Saint Cosme Les Deux Albion",    "https://www.vivino.com/en/chateau-de-saint-cosme-les-deux-albion-principaute-d-orange/w/35424",        False),
+              ("Chateau de Saint Cosme Les Deux Albion",    "https://www.vivino.com/en/chateau-de-saint-cosme-cotes-du-rhone-les-deux-albion/w/1173569",          False),
               ("Gaston Burtin Extra Brut Champagne",        "https://www.vivino.com/en/gaston-burtin-extra-brut-champagne/w/12489584",                               True),
               ("La Sala Chianti Classico",                  "https://www.vivino.com/IT/en/it-la-sala-chianti-classico/w/2140869",                                   False),
-              ("Prototype Cabernet Sauvignon",              "https://www.vivino.com/en/prototype-cabernet-sauvignon/w/5733636",                                     False),
+              ("Prototype Cabernet Sauvignon",              "https://www.vivino.com/en/prototype-cabernet-sauvignon/w/5885528",                                     False),
               ("Prototype Zinfandel",                       "https://www.vivino.com/en/prototype-zinfandel/w/6172116",                                              False),
-              ("Prototype Chardonnay",                      "https://www.vivino.com/en/prototype-chardonnay/w/7553744",                                             False),
+              ("Prototype Chardonnay",                      "https://www.vivino.com/en/prototype-chardonnay/w/6781547",                                             False),
               ("Mahi Sauvignon Blanc",                      "https://www.vivino.com/en/mahi-sauvignon-blanc/w/1112088",                                             False),
               ("Mahi Pinot Noir",                           "https://www.vivino.com/en/mahi-pinot-noir/w/1112105",                                                  False),
               ("Terramater Magis Carmenere",                "https://www.vivino.com/en/terramater-magis-limited-reserve-carmenere/w/9597776",                       False),
