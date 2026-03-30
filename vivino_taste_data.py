@@ -287,11 +287,26 @@ def scrape_one(driver: webdriver.Chrome, wid: str, name: str, url: str) -> dict:
         time.sleep(PAGE_WAIT + 3)
         src = driver.page_source
 
+    # 첫 번째 와인의 HTML을 디버그 파일로 저장
+    if wid == WINES[0][0]:
+        try:
+            with open("debug_taste_p1.html", "w", encoding="utf-8") as dbg:
+                dbg.write(src[:80000])
+            print("    [debug] debug_taste_p1.html 저장됨")
+        except Exception as e:
+            print(f"    [debug] 저장 실패: {e}")
+
     body_text = ""
     try:
         body_text = driver.find_element(By.TAG_NAME, "body").text
     except Exception:
         pass
+
+    # 페이지 상태 진단 출력
+    title = driver.title
+    body_len = len(body_text)
+    src_len  = len(src)
+    print(f"    title={title!r}  body_len={body_len}  src_len={src_len}")
 
     # 슬라이더: HTML 파싱 → DOM fallback → JSON fallback
     sliders = parse_sliders_html(src)
