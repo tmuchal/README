@@ -191,6 +191,16 @@ def parse_sliders_json(src: str) -> dict:
     return sliders
 
 
+# 아로마 키워드 추출 시 제외할 보일러플레이트 단어 목록
+_AROMA_STOPWORDS = {
+    "taste", "profile", "based", "on", "user", "reviews", "review",
+    "mentions", "mention", "of", "notes", "note", "this", "wine",
+    "what", "does", "like", "the", "and", "for", "with", "from",
+    "that", "have", "has", "are", "is", "its", "it", "summary",
+    "lovers", "wine lovers", "taste summary",
+}
+
+
 # ── 아로마 파싱 ───────────────────────────────────────────────────────────────
 def parse_aroma(body_text: str, src: str):
     """
@@ -205,40 +215,50 @@ def parse_aroma(body_text: str, src: str):
     )
     mentions_list = [f"{c.replace(',','')} mentions of {d.strip()}" for c, d in mention_matches[:8]]
 
-    # 개별 아로마 키워드 (JSON에서 추출)
-    keywords_set = []
+    # 개별 아로마 키워드 1순위: JSON flavor_group / keyword 데이터
+    keywords_list = []
     try:
-        flavor_blocks = re.findall(
-            r'"group_name"\s*:\s*"[^"]*".*?"stats"\s*:\s*\[.*?\]',
-            src, re.S,
-        )
-        for block in flavor_blocks:
-            names = re.findall(r'"name"\s*:\s*"([^"]+)"', block)
-            for n in names:
-                if n not in keywords_set:
-                    keywords_set.append(n)
+        # Vivino JSON 구조: "keyword":{"name":"blackberry",...}  또는  "keywords":[{"name":...}]
+        # 방법 A: keyword name 직접 추출
+        kw_names = re.findall(r'"keyword"\s*:\s*\{[^}]*"name"\s*:\s*"([^"]+)"', src)
+        if not kw_names:
+            # 방법 B: flavor stats 블록
+            kw_names = re.findall(r'"name"\s*:\s*"([^"]+)"[^}]*"count"\s*:\s*\d+', src)
+        seen = set()
+        for n in kw_names:
+            nl = n.lower().strip()
+            if nl not in seen and nl not in _AROMA_STOPWORDS and len(nl) > 2:
+                seen.add(nl)
+                keywords_list.append(n)
+                if len(keywords_list) >= 15:
+                    break
     except Exception:
         pass
 
-    # JSON에서 못 찾으면 body_text에서 추출 시도
-    if not keywords_set and mention_matches:
-        # "What does this wine taste like?" 이후 단락에서 개별 단어 추출
-        m_start = re.search(r'taste like\?', body_text, re.I)
-        if m_start:
-            taste_section = body_text[m_start.end():m_start.end() + 500]
-            # 소문자, 공백 포함 짧은 구 (아로마 키워드 형태)
-            words = re.findall(r'\b[a-z][a-z ]{2,20}[a-z]\b', taste_section)
-            seen = set()
-            for w in words:
-                w = w.strip()
-                if w not in seen and w not in ("mentions", "of", "notes", "based", "on", "user", "reviews"):
-                    seen.add(w)
-                    keywords_set.append(w)
-                    if len(keywords_set) >= 12:
-                        break
+    # 개별 아로마 키워드 2순위: body_text에서 멘션 헤더 사이 키워드 줄 추출
+    if not keywords_list and mention_matches:
+        # 멘션 헤더들의 위치를 찾아서, 헤더와 헤더 사이 텍스트에서 키워드 추출
+        mention_hdr_re = re.compile(r'\d[\d,]*\s+mentions?\s+of\s+[^\n]+', re.I)
+        segments = mention_hdr_re.split(body_text)
+        # segments[0]은 첫 헤더 이전 → 스킵. segments[1], [2], ...가 각 카테고리 아래 내용
+        seen = set()
+        for seg in segments[1:4]:  # 상위 3개 카테고리만
+            # 짧은 줄 = 개별 키워드 (한 줄에 하나씩 나열됨)
+            for line in seg.split("\n"):
+                word = line.strip().lower()
+                if 2 < len(word) <= 25 and word not in _AROMA_STOPWORDS:
+                    # 숫자 포함 줄 제외
+                    if not re.search(r'\d', word):
+                        if word not in seen:
+                            seen.add(word)
+                            keywords_list.append(line.strip())
+                            if len(keywords_list) >= 15:
+                                break
+            if len(keywords_list) >= 15:
+                break
 
     return (
-        ", ".join(keywords_set[:12]),
+        ", ".join(keywords_list[:15]),
         " | ".join(mentions_list),
     )
 
@@ -287,12 +307,12 @@ def scrape_one(driver: webdriver.Chrome, wid: str, name: str, url: str) -> dict:
         time.sleep(PAGE_WAIT + 3)
         src = driver.page_source
 
-    # 첫 번째 와인의 HTML을 디버그 파일로 저장
+    # 첫 번째 와인의 HTML을 디버그 파일로 저장 (전체)
     if wid == WINES[0][0]:
         try:
             with open("debug_taste_p1.html", "w", encoding="utf-8") as dbg:
-                dbg.write(src[:80000])
-            print("    [debug] debug_taste_p1.html 저장됨")
+                dbg.write(src)
+            print(f"    [debug] debug_taste_p1.html 저장됨 ({len(src)} chars)")
         except Exception as e:
             print(f"    [debug] 저장 실패: {e}")
 
@@ -307,6 +327,18 @@ def scrape_one(driver: webdriver.Chrome, wid: str, name: str, url: str) -> dict:
     body_len = len(body_text)
     src_len  = len(src)
     print(f"    title={title!r}  body_len={body_len}  src_len={src_len}")
+
+    # Vivino 등록 와인 이름 (h1)
+    vivino_name = ""
+    try:
+        vivino_name = driver.find_element(
+            By.CSS_SELECTOR, "h1[class*='wineName'], h1[class*='wine'], h1"
+        ).text.strip().replace("\n", " ")
+    except Exception:
+        pass
+    if not vivino_name:
+        # 타이틀에서 추출 ("Wine Name | Vivino English")
+        vivino_name = title.split("|")[0].strip()
 
     # 슬라이더: HTML 파싱 → DOM fallback → JSON fallback
     sliders = parse_sliders_html(src)
@@ -330,7 +362,8 @@ def scrape_one(driver: webdriver.Chrome, wid: str, name: str, url: str) -> dict:
     return {
         "id":             wid,
         "original_name":  name,
-        "vivino_url":     url,
+        "vivino_name":    vivino_name,
+        "url":            url,
         "rating":         rating,
         "ratings_count":  ratings_count,
         "body":           sliders.get("body", ""),
@@ -354,7 +387,7 @@ def scrape_with_retry(driver: webdriver.Chrome, wid: str, name: str, url: str) -
                 time.sleep(5)
     # 모두 실패
     return {
-        "id": wid, "original_name": name, "vivino_url": url,
+        "id": wid, "original_name": name, "vivino_name": "FAILED", "url": url,
         "rating": "FAILED", "ratings_count": "FAILED",
         "body": "FAILED", "tannin": "FAILED", "sweetness": "FAILED",
         "acidity": "FAILED", "fizziness": "FAILED",
@@ -388,7 +421,7 @@ def main():
 
     # ── CSV 저장 ──────────────────────────────────────────────────────────────
     fieldnames = [
-        "id", "original_name", "vivino_url",
+        "id", "original_name", "vivino_name", "url",
         "rating", "ratings_count",
         "body", "tannin", "sweetness", "acidity", "fizziness",
         "aroma_keywords", "aroma_mentions",
