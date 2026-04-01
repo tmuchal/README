@@ -227,7 +227,15 @@ def parse_aroma(body_text: str, src: str):
         seen = set()
         for n in kw_names:
             nl = n.lower().strip()
-            if nl not in seen and nl not in _AROMA_STOPWORDS and len(nl) > 2:
+            # 아로마 키워드 조건: 소문자 시작, 괄호 없음, 단순 단어/구
+            if (
+                n and n[0].islower()            # 소문자 시작 (Beef, Lamb 등 제외)
+                and "(" not in n                # 괄호 없음
+                and len(nl) > 2
+                and len(nl) <= 20
+                and nl not in seen
+                and nl not in _AROMA_STOPWORDS
+            ):
                 seen.add(nl)
                 keywords_list.append(n)
                 if len(keywords_list) >= 15:
