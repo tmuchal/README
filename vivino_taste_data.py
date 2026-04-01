@@ -215,55 +215,31 @@ def parse_aroma(body_text: str, src: str):
     )
     mentions_list = [f"{c.replace(',','')} mentions of {d.strip()}" for c, d in mention_matches[:8]]
 
-    # 개별 아로마 키워드 1순위: JSON flavor_group / keyword 데이터
+    # 개별 아로마 키워드: body_text의 멘션 헤더 바로 다음 줄만 추출
+    # Vivino 구조: "X mentions of Y notes\nkeyword1\nkeyword2\n..."
     keywords_list = []
-    try:
-        # Vivino JSON 구조: "keyword":{"name":"blackberry",...}  또는  "keywords":[{"name":...}]
-        # 방법 A: keyword name 직접 추출
-        kw_names = re.findall(r'"keyword"\s*:\s*\{[^}]*"name"\s*:\s*"([^"]+)"', src)
-        if not kw_names:
-            # 방법 B: flavor stats 블록
-            kw_names = re.findall(r'"name"\s*:\s*"([^"]+)"[^}]*"count"\s*:\s*\d+', src)
-        seen = set()
-        for n in kw_names:
-            nl = n.lower().strip()
-            # 아로마 키워드 조건: 소문자 시작, 괄호 없음, 단순 단어/구
+    mention_hdr_re = re.compile(r'\d[\d,]*\s+mentions?\s+of\s+[^\n]+', re.I)
+    segments = mention_hdr_re.split(body_text)
+    seen = set()
+    for seg in segments[1:6]:       # 상위 6개 카테고리
+        lines = [l.strip() for l in seg.split("\n") if l.strip()]
+        for line in lines[:4]:      # 각 카테고리 최대 4줄만 (바로 아래 키워드들)
+            word = line.lower()
             if (
-                n and n[0].islower()            # 소문자 시작 (Beef, Lamb 등 제외)
-                and "(" not in n                # 괄호 없음
-                and len(nl) > 2
-                and len(nl) <= 20
-                and nl not in seen
-                and nl not in _AROMA_STOPWORDS
+                2 < len(word) <= 22
+                and not re.search(r'[0-9]', word)        # 숫자 없음
+                and not re.search(r'[A-Z]', line)        # 대문자 없음 (Beef, App 등 제외)
+                and "(" not in word                       # 괄호 없음
+                and "&" not in word                       # & 없음
+                and word not in _AROMA_STOPWORDS
+                and word not in seen
             ):
-                seen.add(nl)
-                keywords_list.append(n)
+                seen.add(word)
+                keywords_list.append(line)
                 if len(keywords_list) >= 15:
                     break
-    except Exception:
-        pass
-
-    # 개별 아로마 키워드 2순위: body_text에서 멘션 헤더 사이 키워드 줄 추출
-    if not keywords_list and mention_matches:
-        # 멘션 헤더들의 위치를 찾아서, 헤더와 헤더 사이 텍스트에서 키워드 추출
-        mention_hdr_re = re.compile(r'\d[\d,]*\s+mentions?\s+of\s+[^\n]+', re.I)
-        segments = mention_hdr_re.split(body_text)
-        # segments[0]은 첫 헤더 이전 → 스킵. segments[1], [2], ...가 각 카테고리 아래 내용
-        seen = set()
-        for seg in segments[1:4]:  # 상위 3개 카테고리만
-            # 짧은 줄 = 개별 키워드 (한 줄에 하나씩 나열됨)
-            for line in seg.split("\n"):
-                word = line.strip().lower()
-                if 2 < len(word) <= 25 and word not in _AROMA_STOPWORDS:
-                    # 숫자 포함 줄 제외
-                    if not re.search(r'\d', word):
-                        if word not in seen:
-                            seen.add(word)
-                            keywords_list.append(line.strip())
-                            if len(keywords_list) >= 15:
-                                break
-            if len(keywords_list) >= 15:
-                break
+        if len(keywords_list) >= 15:
+            break
 
     return (
         ", ".join(keywords_list[:15]),
